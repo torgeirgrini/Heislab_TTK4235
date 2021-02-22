@@ -4,7 +4,7 @@
 #include "hardware.h"
 #include "timer.h"
 #include "utilities.h"
-
+#include "states/states.h"
 
 static void clear_all_order_lights(){
     HardwareOrder order_types[3] = {
@@ -29,40 +29,40 @@ int main(){
         exit(1);
     }
     
-    printf("=== Example Program ===\n");
-    printf("Press the stop button on the elevator panel to exit\n");
+    state current_state = INIT;
 
-    hardware_command_movement(HARDWARE_MOVEMENT_UP);
-    
-    int newval = hardware_read_floor_sensor(0), oldval;
+    while(1) {
+        switch(current_state) {
+            case INIT:
+                while(!read_all_floor_sensors()) {
+                    hardware_command_movement(HARDWARE_MOVEMENT_UP);
+                }
+                hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+                break;
 
-    while(1){
-        oldval = newval;
-        newval = hardware_read_floor_sensor(0);
-
-        if(hardware_read_stop_signal()){
-            hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-            break;
+            case IDLE_IN_FLOOR:
+                //do something
+                break;
+            case IDLE_IN_SHAFT:
+                //do something
+                break;
+            case MOVEMENT:
+                //do something
+                break;
+            case DOOR_OPEN:
+                //do something
+                break;
+            case TIMER:
+                //do something
+                break;
+            case STOP_BTN_MOVEMENT:
+                //do something
+                break;
+            case STOP_BTN_SHAFT:
+                //do something
+                break;
         }
 
-        /* All buttons must be polled, like this: */
-        for(int f = 0; f < HARDWARE_NUMBER_OF_FLOORS; f++){
-            if(hardware_read_floor_sensor(f)){
-                hardware_command_floor_indicator_on(f);
-            }
-        }
-        
-        /* Code block that makes the elevator go up when it reach the botton*/
-        if(hardware_read_floor_sensor(0) && (newval > oldval)){
-            hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-            control_timer(3000);
-            hardware_command_movement(HARDWARE_MOVEMENT_UP);
-        }
-
-        /* Code block that makes the elevator go down when it reach the top floor*/
-        if(hardware_read_floor_sensor(HARDWARE_NUMBER_OF_FLOORS - 1)){
-            hardware_command_movement(HARDWARE_MOVEMENT_DOWN);
-        }
     }
 
     return 0;
