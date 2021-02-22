@@ -1,5 +1,5 @@
 #include "timer.h"
-
+/*
 int setTimer(int trigger_ms) {
     int obstruction;
 
@@ -19,4 +19,17 @@ int setTimer(int trigger_ms) {
         msec = difference / CLOCKS_PER_SEC;
     }
     return 1;
+}*/
+
+clock_t setTimer() {
+    return clock();
+}
+
+int timerFinished(clock_t before, int trigger_ms) {
+    clock_t difference = (clock() - before)*1000;
+    int msec = (difference*10) / CLOCKS_PER_SEC;
+    if (msec >= trigger_ms) {
+        return 1;
+    }
+    return 0;
 }

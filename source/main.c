@@ -83,10 +83,18 @@ int main(){
         }
 
         /* Code block that makes the elevator go up when it reach the botton*/
-        if(hardware_read_floor_sensor(0) && (newval > oldval)){
-            hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-            control_timer(3000);
-            hardware_command_movement(HARDWARE_MOVEMENT_UP);
+        if(hardware_read_floor_sensor(0)){
+            clock_t before;
+            if(newval > oldval) {
+                hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+                before = setTimer();
+            }
+            if(hardware_read_obstruction_signal()) {
+                before = setTimer();
+            }
+            if (timerFinished(before, 3000)) {
+                hardware_command_movement(HARDWARE_MOVEMENT_UP);
+            }
         }
 
         /* Code block that makes the elevator go down when it reach the top floor*/
