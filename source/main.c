@@ -21,7 +21,6 @@ static void clear_all_order_lights(){
     }
 }
 
-
 int main(){
     int error = hardware_init();
     if(error != 0){
@@ -70,15 +69,21 @@ int main(){
     printf("Press the stop button on the elevator panel to exit\n");
 
     hardware_command_movement(HARDWARE_MOVEMENT_UP);
-
+    
+    int newval, oldval;
+    newval = hardware_read_obstruction_signal(0);
+    
     while(1){
+        oldval = newval;
+        newval = hardware_read_floor_sensor(0);
+
         if(hardware_read_stop_signal()){
             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
             break;
         }
 
         /* Code block that makes the elevator go up when it reach the botton*/
-        if(hardware_read_floor_sensor(0)){
+        if(hardware_read_floor_sensor(0) && (newval > oldval)){
             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
             control_timer(3000);
             hardware_command_movement(HARDWARE_MOVEMENT_UP);
