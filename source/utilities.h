@@ -1,7 +1,7 @@
-#include "timer.h"
-
 #ifndef UTILITIES_H
 #define UTILITIES_H
+
+//#include "timer.h"
 
 //returns 1 if the elevator is entering the given floor (edge-triggered), returns 0 otherwise
 int check_positive_edge_trigger_floor(int floor);
