@@ -76,23 +76,18 @@ int main(){
 
     }
 */
-/*
-    int **g_queue_matrix = NULL;
 
-    int number_of_floors = 4;
-    //queue_matrix_init(g_queue_matrix, HARDWARE_NUMBER_OF_FLOORS);
+    //Initialise queue handler matrix
+    int **g_queue_matrix = queue_matrix_init(HARDWARE_NUMBER_OF_FLOORS);
 
-      g_queue_matrix = malloc(ROWS*sizeof(int*));
-    for(int i = 0; i < ROWS ; i++){
-    g_queue_matrix[i] = malloc(number_of_floors*sizeof(int));
+    //Print queue handler matrix
+    for (int i = 0; i < QUEUE_HANDLER_NUMBER_OF_ROWS; i++) {
+        for (int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
+            printf("%d ", g_queue_matrix[i][j]);
+        }
+        printf("\n");
     }
 
-    
-    queue_matrix_init(g_queue_matrix, number_of_floors);
-
-    printf("%d ", g_queue_matrix[0][0]);
-    printf("\nHALLO\n");
-*/
 
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
