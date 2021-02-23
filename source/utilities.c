@@ -12,8 +12,8 @@ void control_timer(int milliseconds) {
 
 int read_all_floor_sensors() {
     for(int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; i++){
-                    if(hardware_read_floor_sensor(i)) {
-                        return i;
-                    }
+        if(hardware_read_floor_sensor(i)) {
+            return i;   
+        }
     }
 }
