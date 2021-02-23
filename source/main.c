@@ -5,6 +5,17 @@
 #include "timer.h"
 #include "utilities.h"
 #include "states.h"
+#include "queue_handler.h"
+
+/*
+struct elevator {
+    int number_of_floors;
+    HardwareMovement current_direction;
+    int queueMatrix[3][number_of_floors];
+
+};
+*/
+
 
 static void clear_all_order_lights(){
     HardwareOrder order_types[3] = {
@@ -20,6 +31,7 @@ static void clear_all_order_lights(){
         }
     }
 }
+
 
 int main(){
     int error = hardware_init();
@@ -65,6 +77,18 @@ int main(){
     }
 */
 
+    //Initialise queue handler matrix
+    int **g_queue_matrix = queue_matrix_init(HARDWARE_NUMBER_OF_FLOORS);
+
+    //Print queue handler matrix
+    for (int i = 0; i < QUEUE_HANDLER_NUMBER_OF_ROWS; i++) {
+        for (int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
+            printf("%d ", g_queue_matrix[i][j]);
+        }
+        printf("\n");
+    }
+
+
     printf("=== Example Program ===\n");
     printf("Press the stop button on the elevator panel to exit\n");
 
@@ -72,7 +96,7 @@ int main(){
     
     int newval, oldval;
     newval = hardware_read_obstruction_signal(0);
-    
+
     while(1){
         oldval = newval;
         newval = hardware_read_floor_sensor(0);
