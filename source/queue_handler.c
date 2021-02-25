@@ -20,7 +20,7 @@ void queue_matrix_clear(int **queue_matrix, int number_of_floors) {
     }
 }
 
-int queue_matrix_active_order(int **queue_matrix, int number_of_floors, int current_floor) {
+int queue_matrix_active_orders(int **queue_matrix, int number_of_floors, int current_floor) {
     for(int i = 0; i < QUEUE_HANDLER_NUMBER_OF_ROWS; i++) {
         for(int j = 0; j < number_of_floors; j++) {
             if (queue_matrix[i][j]) {
@@ -33,6 +33,7 @@ int queue_matrix_active_order(int **queue_matrix, int number_of_floors, int curr
             }
         }
     }
+    return 1;
 }
 
 int queue_matrix_active_orders_cur_dir(int **queue_matrix, int number_of_floors, int current_floor, int current_direction) {
