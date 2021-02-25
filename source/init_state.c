@@ -6,6 +6,7 @@ void elevator_startup_routine(Elevator *elev) {
         elev->current_dir = HARDWARE_MOVEMENT_UP;
     }
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+    elev->current_dir = HARDWARE_MOVEMENT_STOP;
     for(int i = 0; i < HARDWARE_NUMBER_OF_FLOORS; i++) {
         if(hardware_read_floor_sensor(i)) {
             elev->current_floor = i;
