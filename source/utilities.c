@@ -10,7 +10,7 @@ int read_all_floor_sensors() {
     return -1;
 }
 
-static void clear_all_order_lights(){
+void clear_all_order_lights(){
     HardwareOrder order_types[3] = {
         HARDWARE_ORDER_UP,
         HARDWARE_ORDER_INSIDE,
