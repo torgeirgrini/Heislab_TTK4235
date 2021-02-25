@@ -3,12 +3,6 @@
 
 #include <time.h>
 
-/*
-//Returns 1 if timer finished successfully. Return 0 if timer was disrupted.
-int setTimer(int trigger_ms);
-*/
-
-
 //starts a timer. returns the original time of the timer
 clock_t setTimer();
 
