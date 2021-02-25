@@ -16,4 +16,5 @@ int read_all_floor_sensors() {
             return i;   
         }
     }
+    return -1;
 }

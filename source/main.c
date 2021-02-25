@@ -5,16 +5,8 @@
 #include "timer.h"
 #include "utilities.h"
 #include "states.h"
+#include "init_state.h"
 #include "queue_handler.h"
-
-/*
-struct elevator {
-    int number_of_floors;
-    HardwareMovement current_direction;
-    int queueMatrix[3][number_of_floors];
-
-};
-*/
 
 
 static void clear_all_order_lights(){
@@ -34,48 +26,68 @@ static void clear_all_order_lights(){
 
 
 int main(){
+
     int error = hardware_init();
     if(error != 0){
         fprintf(stderr, "Unable to initialize hardware\n");
         exit(1);
     }
-/*    
-    state current_state = INIT;
+ 
+    Elevator elevator_struct;
+    init_elevator(elevator_struct);
 
     while(1) {
-        switch(current_state) {
+        //update order
+        switch(elevator_struct.current_state) {
             case INIT:
-                while(!read_all_floor_sensors()) {
-                    hardware_command_movement(HARDWARE_MOVEMENT_UP);
-                }
-                hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+                elevator_startup_routine(elevator_struct);
+                elevator_struct.current_floor = read_all_floor_sensors();
+                elevator_struct.current_state = IDLE_IN_FLOOR;
                 break;
 
             case IDLE_IN_FLOOR:
-                //do something
+                //look for orders
                 break;
+                
             case IDLE_IN_SHAFT:
-                //do something
+                //look for orders
                 break;
+
             case MOVEMENT:
                 //do something
                 break;
+
             case DOOR_OPEN:
                 //do something
                 break;
+
             case TIMER:
                 //do something
                 break;
+
             case STOP_BTN_MOVEMENT:
-                //do something
+                hardware_command_stop_light(1);
+                queue_matrix_clear(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS);
+                while(hardware_read_stop_signal()){
+                    //reject orders
+                }
+                hardware_command_stop_light(0);
+                elevator_struct.current_state = IDLE_IN_SHAFT;
                 break;
+
             case STOP_BTN_SHAFT:
-                //do something
+                hardware_command_stop_light(1);
+                queue_matrix_clear(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS);
+                hardware_command_door_open(1);
+                while(hardware_read_stop_signal()) {
+                    //reject orders
+                }
+                hardware_command_stop_light(0);
+                elevator_struct.current_state = TIMER;
                 break;
         }
 
     }
-*/
 
     //Initialise queue handler matrix
     int **g_queue_matrix = queue_matrix_init(HARDWARE_NUMBER_OF_FLOORS);
