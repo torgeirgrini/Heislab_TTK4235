@@ -16,6 +16,7 @@ int read_all_floor_sensors() {
             return i;   
         }
     }
+    return -1;
 }
 
 static void clear_all_order_lights(){
