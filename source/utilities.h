@@ -13,4 +13,6 @@ void control_timer(int milliseconds);
 
 int read_all_floor_sensors();
 
+static void clear_all_order_lights();
+
 #endif
