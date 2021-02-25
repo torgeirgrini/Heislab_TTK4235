@@ -45,7 +45,6 @@ int queue_matrix_active_orders_cur_dir(int **queue_matrix, int number_of_floors,
     int start_floor_search = 0;
     int end_floor_search = 0;
     int order_type = 0;
-    int inside_hall = 2;
     
     //Elevators direction is up
     if (current_direction == HARDWARE_MOVEMENT_UP) {
@@ -57,9 +56,9 @@ int queue_matrix_active_orders_cur_dir(int **queue_matrix, int number_of_floors,
     } 
     //Elevators direction is down
     else if (current_direction == HARDWARE_MOVEMENT_DOWN) {
-        int start_floor_search = 0;
-        int end_floor_search = current_floor-1;
-        int check_command = HARDWARE_ORDER_DOWN;
+        start_floor_search = 0;
+        end_floor_search = current_floor-1;
+        order_type = HARDWARE_ORDER_DOWN;
         //Check if the lowest floor is requesting to go up
         if (queue_matrix[HARDWARE_ORDER_UP][start_floor_search]) {return 1;}
     }

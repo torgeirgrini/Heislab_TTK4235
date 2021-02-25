@@ -3,33 +3,10 @@
 
 #include "hardware.h"
 #include "elevator.h"
-
+#include "utilities.h"
 
 //on startup takes the elevator to idle in floor
 void elevator_startup_routine(Elevator *elev);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
