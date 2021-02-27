@@ -46,7 +46,7 @@ int main(){
                 printf("ENTERED IDLE STATE\n");
                 //Check if anyone inside the elevator has requested to get off the elevator at this floor
                 if(queue_matrix_get_order(elevator_struct.queue_handler, HARDWARE_ORDER_INSIDE, elevator_struct.current_floor)) {
-                    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+                    hardware_command_movement(HARDWARE_MOVEMENT_STOP); //trengs denne?
                     elevator_struct.current_state = DOOR_OPEN;
                 }
                 elevator_struct.current_dir = queue_matrix_active_orders(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS, elevator_struct.current_floor);
@@ -64,11 +64,11 @@ int main(){
                 //printf("ENTERED MOVEMENT STATE\n");
                 
                 hardware_command_movement(elevator_struct.current_dir);
-                int floor_read = read_all_floor_sensors();
+                int floor_read = read_all_floor_sensors(); //denne funker bare hvis kun en bestilling siden den returnerer den første den finner fra 0te etasje
                 if(floor_read != -1) {
                     elevator_struct.current_floor = floor_read;
                 }
-                if(hardware_read_floor_sensor(elevator_struct.current_floor)) {
+                if(hardware_read_floor_sensor(elevator_struct.current_floor)) { 
                     //Check if anyone inside the elevator has requested to get off the elevator at this floor
                     if(queue_matrix_get_order(elevator_struct.queue_handler, HARDWARE_ORDER_INSIDE, elevator_struct.current_floor)) {
                         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
@@ -81,12 +81,12 @@ int main(){
                         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                         elevator_struct.current_state = DOOR_OPEN;
                     }
-                    //If there are none active orders in the current direction. Then look for active orders at the current floor in the other direction
+                    //If there are no active orders in the current direction. Then look for active orders at the current floor in the other direction
                     else if (!queue_matrix_active_orders_cur_dir(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS, elevator_struct.current_floor, elevator_struct.current_dir)) {
                         if(queue_matrix_get_order(elevator_struct.queue_handler, elevator_opposite_dir(elevator_struct.current_dir), elevator_struct.current_floor)) {
                             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                            elevator_struct.current_state = DOOR_OPEN;
-                        }
+                            elevator_struct.current_state = DOOR_OPEN; 
+                        } //trengs denne?
                     }
 
                 }

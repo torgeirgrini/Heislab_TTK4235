@@ -5,16 +5,4 @@ typedef enum state {
     INIT, IDLE_IN_FLOOR, IDLE_IN_SHAFT, MOVEMENT, DOOR_OPEN, TIMER, STOP_BTN_MOVEMENT, STOP_BTN_SHAFT, NUM
 } state;
 
-<<<<<<< HEAD
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> b0e25f128465412411205858c4f30c6c032763df
 #endif
