@@ -6,7 +6,7 @@
 
 typedef struct Elevator {
     //queue handler matrix
-    int** queue_handler;
+    int **queue_handler;
 
     //last floor sensor
     int current_floor;
@@ -24,26 +24,10 @@ typedef struct Elevator {
 Initializes the queue matrix to zero matrix. Current_floor to the current floor [0,4), or -1 if in the shaft. Current_dir to 1.
 Current_state to INIT.
 */
-void init_elevator(Elevator elev);
+void init_elevator(Elevator *elev);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//returns opposite direction of current_dir. If current_dir = 1 (Stop), opposite dir is also 1.
+int elevator_opposite_dir(int current_dir);
 
 
 

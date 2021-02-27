@@ -1,17 +1,10 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-//#include "timer.h"
-
-//returns 1 if the elevator is entering the given floor (edge-triggered), returns 0 otherwise
-int check_positive_edge_trigger_floor(int floor);
-
-/*
-//restarts timer if the obstruction is active. Returns when timer have finished successfully
-void control_timer(int milliseconds);
-*/
-
 //returns the current floor, or -1 if the elevator is in the shaft
 int read_all_floor_sensors();
+
+
+void clear_all_order_lights(); //Originally this was declared a static void
 
 #endif
