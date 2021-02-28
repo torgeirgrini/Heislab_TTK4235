@@ -1,10 +1,10 @@
 #include "timer.h"
 
-clock_t setTimer() {
+clock_t set_timer() {
     return clock();
 }
 
-int timerFinished(clock_t before, int trigger_ms) {
+int timer_finished(clock_t before, int trigger_ms) {
     clock_t difference = (clock() - before)*1000;
     int msec = difference / CLOCKS_PER_SEC;
     if (msec >= trigger_ms) {

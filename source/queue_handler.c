@@ -25,15 +25,15 @@ int queue_matrix_active_orders(int **queue_matrix, int number_of_floors, int cur
         for(int j = 0; j < number_of_floors; j++) {
             if (queue_matrix[i][j]) {
                 if (j > current_floor) {
-                    return HARDWARE_ORDER_UP;
+                    return HARDWARE_MOVEMENT_UP;
                 }
                 else if (j < current_floor) {
-                    return HARDWARE_ORDER_DOWN;
+                    return HARDWARE_MOVEMENT_DOWN;
                 }
             }
         }
     }
-    return HARDWARE_ORDER_INSIDE;
+    return HARDWARE_MOVEMENT_STOP;
 }
 
 int queue_matrix_active_orders_cur_dir(int **queue_matrix, int number_of_floors, int current_floor, int current_direction) {
