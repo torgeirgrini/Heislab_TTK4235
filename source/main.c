@@ -85,11 +85,11 @@ int main(){
                     else if (!queue_matrix_active_orders_cur_dir(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS, elevator_struct.current_floor, elevator_struct.current_dir)) {
                         if(queue_matrix_get_order(elevator_struct.queue_handler, elevator_opposite_dir(elevator_struct.current_dir), elevator_struct.current_floor)) {
                             hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                            return 0;
                             elevator_struct.current_state = DOOR_OPEN; 
-                        } //trengs denne?
+                        } //trengs denne? Ja, trengs i tilfellet der feks heisen kommer fra 2 etasje for å ta en bestilling fra noen i tredje
+                            //etasje som skal ned, og det ikke finnes andre aktive ordre.
                     }
-
+                    
                 }
                 break;
 
