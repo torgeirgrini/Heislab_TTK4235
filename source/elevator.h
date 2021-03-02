@@ -17,6 +17,7 @@ typedef struct Elevator {
     //current state
     state current_state;
     
+    int stop_light_set;
     
 } Elevator;
 
