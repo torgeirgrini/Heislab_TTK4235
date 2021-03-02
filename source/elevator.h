@@ -18,6 +18,8 @@ typedef struct Elevator {
     state current_state;
     
     int stop_light_set;
+
+    int timer_set;
     
 } Elevator;
 

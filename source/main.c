@@ -20,7 +20,6 @@ int main(){
         exit(1);
     }
 
-    int timer_set = 0;
     clock_t before;
 
     Elevator elevator_struct;
@@ -28,6 +27,8 @@ int main(){
     init_elevator(elevator_struct_ptr);
     elevator_startup_routine(elevator_struct_ptr);
     elevator_struct.current_state = IDLE_IN_FLOOR;
+
+    clear_all_order_lights();
 
     while(1) {
 
@@ -41,6 +42,14 @@ int main(){
     printf("\n");
 
         queue_matrix_update(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS);
+        
+        //Prints the queue_matrix
+        for(int i = 0; i < QUEUE_HANDLER_NUMBER_OF_ROWS; i++) {
+            for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
+                hardware_command_order_light(j, i, elevator_struct.queue_handler[i][j]);
+            }
+        }
+
         switch(elevator_struct.current_state) {
             case IDLE_IN_FLOOR:
                 printf("ENTERED IDLE STATE\n");
@@ -80,6 +89,7 @@ int main(){
                 int floor_read = read_all_floor_sensors(); //denne funker bare hvis kun en bestilling siden den returnerer den første den finner fra 0te etasje
                 if(floor_read != -1) {
                     elevator_struct.current_floor = floor_read;
+                    hardware_command_floor_indicator_on(elevator_struct.current_floor);
                 }
 
                 if(hardware_read_floor_sensor(elevator_struct.current_floor)) { 
@@ -126,9 +136,9 @@ int main(){
                 if(hardware_read_stop_signal()) {
                     elevator_struct.current_state = STOP_BTN_FLOOR;
                 }
-                if(!timer_set) {
+                if(!elevator_struct.timer_set) {
                     before = set_timer();
-                    timer_set = 1;
+                    elevator_struct.timer_set = 1;
                 }
                 if(hardware_read_obstruction_signal()) {
                     before = set_timer();
@@ -138,7 +148,7 @@ int main(){
                     for(int i = 0; i < QUEUE_HANDLER_NUMBER_OF_ROWS; i++) {
                         queue_matrix_delete_order(elevator_struct.queue_handler, i, elevator_struct.current_floor);
                     }
-                    timer_set = 0;
+                    elevator_struct.timer_set = 0;
                     elevator_struct.current_state = IDLE_IN_FLOOR;
                 }
                     break;

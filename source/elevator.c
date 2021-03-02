@@ -7,6 +7,7 @@ void init_elevator(Elevator *elev) {
     elev->current_dir = HARDWARE_MOVEMENT_STOP;
     elev->current_state = INIT;
     elev->stop_light_set = 0;
+    elev->timer_set = 0;
 }
 
 int elevator_opposite_dir(int current_dir) {
