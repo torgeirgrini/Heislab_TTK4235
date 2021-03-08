@@ -8,10 +8,6 @@ void init_elevator(Elevator *elev) {
     elev->current_state = INIT;
     elev->stop_light_set = 0;
     elev->timer_set = 0;
-}
-
-int elevator_opposite_dir(int current_dir) {
-    if (current_dir == HARDWARE_MOVEMENT_UP) {return HARDWARE_MOVEMENT_DOWN;}
-    if (current_dir == HARDWARE_MOVEMENT_DOWN) {return HARDWARE_MOVEMENT_UP;}
-    return HARDWARE_MOVEMENT_STOP;
+    elev->current_order_dir = HARDWARE_MOVEMENT_STOP;
+    elev->last_dir=HARDWARE_MOVEMENT_STOP;
 }

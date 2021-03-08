@@ -5,22 +5,28 @@
 #include "states.h"
 
 typedef struct Elevator {
+
     //queue handler matrix
     int **queue_handler;
 
+    /* Control variables */
+
     //last floor sensor
     int current_floor;
-
-    //current or last known direction
+    //current direction
     int current_dir;
+    //last direction
+    int last_dir;
+    //direction of last order
+    int current_order_dir;
 
-    //current state
+    
     state current_state;
     
     int stop_light_set;
-
     int timer_set;
-    
+
+     
 } Elevator;
 
 /*
@@ -29,8 +35,6 @@ Current_state to INIT.
 */
 void init_elevator(Elevator *elev);
 
-//returns opposite direction of current_dir. If current_dir = 1 (Stop), opposite dir is also 1.
-int elevator_opposite_dir(int current_dir);
 
 
 
