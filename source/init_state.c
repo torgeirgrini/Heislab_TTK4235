@@ -12,4 +12,5 @@ void elevator_startup_routine(Elevator *elev) {
             elev->current_floor = i;
         }
     }
+    hardware_command_floor_indicator_on(elev->current_floor);
 }

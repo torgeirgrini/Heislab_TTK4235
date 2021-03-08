@@ -37,15 +37,15 @@ int main(){
         
         switch(elevator.current_state) {
             case IDLE_IN_FLOOR:
-                printf("ENTERED IDLE STATE\n");
-
+                //printf("ENTERED IDLE STATE\n");
+                printf("Last order direction [%d]\n", elevator.current_order_dir);
                 if(queue_orders_current_floor(p_elevator)) {
                     elevator.current_state = DOOR_OPEN;
                 }
 
                 if(queue_active_orders(p_elevator)) {
                     elevator.last_dir = elevator.current_dir;
-                    elevator.current_dir = queue_active_orders(p_elevator);
+                    elevator.current_dir = queue_get_movement_direction(p_elevator);
                     elevator.current_state = MOVEMENT;
                 }
 
@@ -55,7 +55,7 @@ int main(){
                 printf("ENTERED IDLE IN SHAFT\n");
                 if(queue_active_orders(p_elevator)) {
                     elevator.last_dir = elevator.current_dir;
-                    elevator.current_dir = queue_active_orders(p_elevator);
+                    elevator.current_dir = queue_get_movement_direction(p_elevator);
                     elevator.current_state = MOVEMENT;
                 }
                 break;
@@ -70,7 +70,6 @@ int main(){
                 if(hardware_read_floor_sensor(elevator.current_floor)) { 
                     //Check if anyone inside the elevator has requested to get off the elevator at this floor
                     if(queue_get_order(p_elevator, HARDWARE_ORDER_INSIDE, elevator.current_floor)) {
-                        printf("case 1\n");
                         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                         elevator.last_dir = elevator.current_dir;
                         elevator.current_dir = HARDWARE_MOVEMENT_STOP;
@@ -79,7 +78,6 @@ int main(){
                     
                     //Check if anyone outside the elevator has requested to step into the elevator in the current direction at this floor
                     else if(queue_get_order(p_elevator, elevator.current_dir, elevator.current_floor)) {
-                        printf("case 2\n");
                         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                         elevator.last_dir = elevator.current_dir;
                         elevator.current_dir = HARDWARE_MOVEMENT_STOP;
@@ -87,7 +85,6 @@ int main(){
                     }
                     //If there are no active orders in the current direction. Then there must be a active order on the current floor in the opposite direction
                     else if(!queue_active_orders_in_current_direction(p_elevator)) {
-                        printf("case 3\n");
                         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                         elevator.last_dir = elevator.current_dir;
                         elevator.current_dir = HARDWARE_MOVEMENT_STOP;
@@ -103,7 +100,7 @@ int main(){
                 break;
 
             case TIMER:
-                //printf("ENTERED TIMER STATE\n");
+                printf("ENTERED TIMER STATE\n");
                 if(!elevator.timer_set) {
                     before = timer_set();
                     elevator.timer_set = 1;
@@ -130,7 +127,6 @@ int main(){
                 }
                 queue_clear(p_elevator);
                 if(!hardware_read_stop_signal()) {
-                    printf("STOP SIGNAL OFF");
                     hardware_command_stop_light(0);
                     elevator.stop_light_set = 0;
                     elevator.current_state = IDLE_IN_SHAFT;

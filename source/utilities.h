@@ -15,8 +15,6 @@ int opposite_direction(int current_dir);
 
 void order_light_on(Elevator *elev);
 
-void order_light_off();
-
 void stop_signal_handler(Elevator *elev);
 
 void update_floor(Elevator *elev);

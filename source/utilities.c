@@ -38,8 +38,6 @@ void order_light_on(Elevator *elev) {
     }
 }
 
-void order_light_off();
-
 void stop_signal_handler(Elevator *elev) {
     if(hardware_read_stop_signal() && (read_all_floor_sensors() != -1)) {
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
