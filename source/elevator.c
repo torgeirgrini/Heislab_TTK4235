@@ -1,7 +1,7 @@
 #include "elevator.h"
 
 void init_elevator(Elevator *elev) {
-    elev->current_floor = read_all_floor_sensors();
+    elev->current_floor = 0;
     elev->current_dir = HARDWARE_MOVEMENT_STOP;
     elev->current_state = INIT;
     elev->stop_light_set = 0;

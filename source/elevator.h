@@ -1,18 +1,17 @@
 #ifndef ELEVATOR_H
 #define ELEVATOR_H
+
+#include <stdlib.h>
 #include "hardware.h"
 #include "states.h"
 
 #define ELEVATOR_NUMBER_OF_ORDERS 3
 
 typedef struct Elevator {
-
-
     //queue handler matrix
     int **queue_matrix;
 
     /* Control variables */
-
     //last floor sensor
     int current_floor;
     //current direction
