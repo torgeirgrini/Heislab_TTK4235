@@ -1,13 +1,15 @@
 #ifndef ELEVATOR_H
 #define ELEVATOR_H
-#include "queue_handler.h"
 #include "hardware.h"
 #include "states.h"
 
+#define ELEVATOR_NUMBER_OF_ORDERS 3
+
 typedef struct Elevator {
 
+
     //queue handler matrix
-    int **queue_handler;
+    int **queue_matrix;
 
     /* Control variables */
 
@@ -34,8 +36,6 @@ Initializes the queue matrix to zero matrix. Current_floor to the current floor 
 Current_state to INIT.
 */
 void init_elevator(Elevator *elev);
-
-
 
 
 #endif
