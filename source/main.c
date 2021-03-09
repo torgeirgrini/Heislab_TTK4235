@@ -20,11 +20,12 @@ int main(){
 
     clock_t before;
 
-    //Elevator elevator;
-    Elevator *p_elevator;// = &elevator;
+    Elevator elevator;
+    Elevator *p_elevator = &elevator;
     init_elevator(p_elevator);
     elevator_startup_routine(p_elevator);
     clear_all_order_lights();
+
 
     while(1) {
         printf("LD: %d\n", p_elevator->last_dir);
@@ -121,16 +122,16 @@ int main(){
 
             case STOP_BTN_FLOOR:
                 printf("ENTERED STOP BTN FLOOR STATE\n");
-                if(!elevator.stop_light_set) {
+                if(!p_elevator->stop_light_set) {
                     hardware_command_stop_light(1);
-                    elevator.stop_light_set = 1;
+                    p_elevator->stop_light_set = 1;
                     hardware_command_door_open(1);
                 }
                 queue_clear(p_elevator);
                 if(!hardware_read_stop_signal()) {
                     hardware_command_stop_light(0);
-                    elevator.stop_light_set = 0;
-                    elevator.current_state = TIMER;
+                    p_elevator->stop_light_set = 0;
+                    p_elevator->current_state = TIMER;
                 }
                 break;
         }
