@@ -45,8 +45,10 @@ void stop_signal_handler(Elevator *elev) {
     }
     else if(hardware_read_stop_signal()) {
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-        elev->last_dir = elev->current_movement;
-        //elev->current_floor = -1;
+        if (elev->current_movement != HARDWARE_MOVEMENT_STOP) {
+            elev->last_dir = elev->current_movement;
+        }
+        
         elev->current_movement = HARDWARE_MOVEMENT_STOP;
         elev->current_state = STOP_BTN_SHAFT;
     }
@@ -58,5 +60,14 @@ void update_floor(Elevator *elev) {
         elev->current_floor = floor_read;
         hardware_command_floor_indicator_on(elev->current_floor);
     }
+}
+
+void adjust_floor_after_stop(Elevator *elev) {
+    if(!queue_active_orders_in_current_direction(elev) && (elev->last_dir == HARDWARE_MOVEMENT_DOWN) || !queue_active_orders_in_current_direction(elev) && (elev->last_dir == HARDWARE_MOVEMENT_DOWN)) {
+        elev->current_floor--;
+    }
+    else if(!queue_active_orders_in_current_direction(elev) && (elev->last_dir == HARDWARE_MOVEMENT_UP) || !queue_active_orders_in_current_direction(elev) && (elev->last_dir == HARDWARE_MOVEMENT_UP)) {
+        elev->current_floor++;
+    } 
 }
 

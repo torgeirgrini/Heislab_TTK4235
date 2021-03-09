@@ -118,7 +118,7 @@ int queue_active_orders_in_current_direction(Elevator *elev) {
     int start_floor_search = 0;
     int end_floor_search = 0;
 
-    if (elev->current_movement == HARDWARE_MOVEMENT_UP) {
+    if (elev->last_dir == HARDWARE_MOVEMENT_UP) {
         start_floor_search = elev->current_floor+1;
         end_floor_search = HARDWARE_NUMBER_OF_FLOORS;
         if (elev->current_floor == HARDWARE_NUMBER_OF_FLOORS-1) {
@@ -126,7 +126,7 @@ int queue_active_orders_in_current_direction(Elevator *elev) {
         }        
     }
     
-    else if (elev->current_movement == HARDWARE_MOVEMENT_DOWN) {
+    else if (elev->last_dir == HARDWARE_MOVEMENT_DOWN) {
         start_floor_search = 0;
         end_floor_search = elev->current_floor;
         if(elev->current_floor == 0) {

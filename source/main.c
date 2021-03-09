@@ -32,6 +32,7 @@ int main(){
         printf("LD: %d\n", p_elevator->last_dir);
         printf("LOD: %d\n", p_elevator->current_order_dir);
         printf("CF: %d\n", p_elevator->current_floor);
+        printf("CM: %d\n", p_elevator->current_movement);
 
         queue_set_orders(p_elevator);
         
@@ -44,6 +45,7 @@ int main(){
             case IDLE_IN_FLOOR:
                 printf("ENTERED IDLE STATE\n");
                 if(queue_orders_current_floor(p_elevator)) {
+                    printf("DOOR OPENS IN IDLE");
                     p_elevator->current_state = DOOR_OPEN;
                 }
                 else if(queue_active_orders(p_elevator)) {
@@ -54,7 +56,9 @@ int main(){
                 
             case IDLE_IN_SHAFT:
                 printf("ENTERED IDLE IN SHAFT\n");
+                
                 if(queue_active_orders(p_elevator)) {
+                    adjust_floor_after_stop(p_elevator);
                     elevator.current_movement = queue_get_movement_direction(p_elevator);
                     elevator.current_state = MOVEMENT;
                 }
@@ -68,6 +72,7 @@ int main(){
                 update_floor(p_elevator);
 
                 if(hardware_read_floor_sensor(elevator.current_floor) && queue_check_orders_current_floor(p_elevator)) { 
+                    printf("DOOR OPENS");
                     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                     elevator.last_dir = elevator.current_movement;
                     elevator.current_movement = HARDWARE_MOVEMENT_STOP;

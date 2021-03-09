@@ -19,4 +19,6 @@ void stop_signal_handler(Elevator *elev);
 
 void update_floor(Elevator *elev);
 
+void adjust_floor_after_stop(Elevator *elev);
+
 #endif
