@@ -20,11 +20,10 @@ int main(){
 
     clock_t before;
 
-    Elevator elevator;
-    Elevator *p_elevator = &elevator;
+    //Elevator elevator;
+    Elevator *p_elevator;// = &elevator;
     init_elevator(p_elevator);
     elevator_startup_routine(p_elevator);
-    elevator.current_state = IDLE_IN_FLOOR;
     clear_all_order_lights();
 
     while(1) {
@@ -39,7 +38,7 @@ int main(){
 
         stop_signal_handler(p_elevator);
         
-        switch(elevator.current_state) {
+        switch(p_elevator->current_state) {
 
             case IDLE_IN_FLOOR:
                 printf("ENTERED IDLE STATE\n");
@@ -48,8 +47,8 @@ int main(){
                     p_elevator->current_state = DOOR_OPEN;
                 }
                 else if(queue_active_orders(p_elevator)) {
-                    elevator.current_movement = queue_get_movement_direction(p_elevator);
-                    elevator.current_state = MOVEMENT;
+                    p_elevator->current_movement = queue_get_movement_direction(p_elevator);
+                    p_elevator->current_state = MOVEMENT;
                 }
                 break;
                 
@@ -58,24 +57,24 @@ int main(){
                 
                 if(queue_active_orders(p_elevator)) {
                     adjust_floor_after_stop(p_elevator);
-                    elevator.current_movement = queue_get_movement_direction(p_elevator);
-                    elevator.current_state = MOVEMENT;
+                    p_elevator->current_movement = queue_get_movement_direction(p_elevator);
+                    p_elevator->current_state = MOVEMENT;
                 }
                 break;
 
             case MOVEMENT:
                 printf("ENTERED MOVEMENT STATE\n");
 
-                hardware_command_movement(elevator.current_movement);
+                hardware_command_movement(p_elevator->current_movement);
                 
                 update_floor(p_elevator);
 
-                if(hardware_read_floor_sensor(elevator.current_floor) && queue_check_orders_current_floor(p_elevator)) { 
+                if(hardware_read_floor_sensor(p_elevator->current_floor) && queue_check_orders_current_floor(p_elevator)) { 
                     printf("DOOR OPENS");
                     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                    elevator.last_dir = elevator.current_movement;
-                    elevator.current_movement = HARDWARE_MOVEMENT_STOP;
-                    elevator.current_state = DOOR_OPEN; 
+                    p_elevator->last_dir = p_elevator->current_movement;
+                    p_elevator->current_movement = HARDWARE_MOVEMENT_STOP;
+                    p_elevator->current_state = DOOR_OPEN; 
                 
                 }
                 break;
@@ -83,40 +82,40 @@ int main(){
             case DOOR_OPEN:
                 printf("ENTERED DOOR OPEN STATE\n");
                 hardware_command_door_open(1);
-                elevator.current_state = TIMER;
+                p_elevator->current_state = TIMER;
                 break;
 
             case TIMER:
                 printf("ENTERED TIMER STATE\n");
-                if(!elevator.timer_set) {
+                if(!p_elevator->timer_set) {
                     before = timer_set();
-                    elevator.timer_set = 1;
+                    p_elevator->timer_set = 1;
                 }
                 if(hardware_read_obstruction_signal()) {
                     before = timer_set();
                 }
                 if (timer_finished(before, 3000)) {
                     hardware_command_door_open(0);
-                    elevator.current_order_dir = queue_get_direction_of_order(p_elevator);
+                    p_elevator->current_order_dir = queue_get_direction_of_order(p_elevator);
                     for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
-                        queue_delete_order(p_elevator, i, elevator.current_floor);
+                        queue_delete_order(p_elevator, i, p_elevator->current_floor);
                     }
-                    elevator.timer_set = 0;
-                    elevator.current_state = IDLE_IN_FLOOR;
+                    p_elevator->timer_set = 0;
+                    p_elevator->current_state = IDLE_IN_FLOOR;
                 }
                     break;
 
             case STOP_BTN_SHAFT:
                 printf("ENTERED STOP BTN SHAFT STATE\n");
-                if(!elevator.stop_light_set) {
+                if(!p_elevator->stop_light_set) {
                     hardware_command_stop_light(1);
-                    elevator.stop_light_set = 1;
+                    p_elevator->stop_light_set = 1;
                 }
                 queue_clear(p_elevator);
                 if(!hardware_read_stop_signal()) {
                     hardware_command_stop_light(0);
-                    elevator.stop_light_set = 0;
-                    elevator.current_state = IDLE_IN_SHAFT;
+                    p_elevator->stop_light_set = 0;
+                    p_elevator->current_state = IDLE_IN_SHAFT;
                 }
                 break;
 

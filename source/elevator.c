@@ -3,7 +3,7 @@
 void init_elevator(Elevator *elev) {
     elev->current_floor = 0;
     elev->current_movement = HARDWARE_MOVEMENT_STOP;
-    elev->current_state = INIT;
+    elev->current_state = IDLE_IN_FLOOR;
     elev->stop_light_set = 0;
     elev->timer_set = 0;
     elev->current_order_dir = HARDWARE_MOVEMENT_STOP;
