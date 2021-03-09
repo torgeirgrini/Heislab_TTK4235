@@ -148,7 +148,7 @@ int queue_active_orders_in_direction(Elevator *elev, int direction) {
 
 
 int queue_check_orders_current_floor(Elevator* elev) {
-    return queue_get_order(elev, HARDWARE_ORDER_INSIDE, elev->current_floor)
+    return (queue_get_order(elev, HARDWARE_ORDER_INSIDE, elev->current_floor)
     || queue_get_order(elev, elev->current_movement, elev->current_floor)
-    || !queue_active_orders_in_direction(elev, elev->current_movement);
+    || !queue_active_orders_in_direction(elev, elev->current_movement));
 }
