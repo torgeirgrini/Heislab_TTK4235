@@ -45,8 +45,9 @@ void stop_signal_handler(Elevator *elev) {
     }
     else if(hardware_read_stop_signal()) {
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-        elev->last_dir = elev->current_dir;
-        elev->current_dir = HARDWARE_MOVEMENT_STOP;
+        elev->last_dir = elev->current_movement;
+        //elev->current_floor = -1;
+        elev->current_movement = HARDWARE_MOVEMENT_STOP;
         elev->current_state = STOP_BTN_SHAFT;
     }
 }

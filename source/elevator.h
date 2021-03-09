@@ -15,7 +15,7 @@ typedef struct Elevator {
     //last floor sensor
     int current_floor;
     //current direction
-    int current_dir;
+    int current_movement;
     //last direction
     int last_dir;
     //direction of last order

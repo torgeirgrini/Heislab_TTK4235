@@ -9,18 +9,23 @@
 //Sets all elements of queue_matrix to zero.
 void queue_clear(Elevator *elev);
 
-//Updates queue_matrix with new orders
-void queue_set_orders(Elevator *elev);
-
 //Returns 1 if there is and order at queue_matrix[order_type][floor]. 0 otherwise
 int queue_get_order(Elevator *elev, int order_type, int floor);
+
+//Updates queue_matrix with new orders
+void queue_set_orders(Elevator *elev);
 
 //Deletes the order at location queue_matrix[order_type][floor]
 void queue_delete_order(Elevator *elev, int order_type, int floor);
 
+//Returns true if there are any untreated orders at current floor, 0 otherwise
+int queue_orders_current_floor(Elevator *elev);
+
 //Iterates through all elements of queue_matrix to see if any orders are active. Returns 0 if there are active orders in 
 //the upwards direction, 1 to indicate stop, 2 to indicate active orders in downwards direction
 int queue_active_orders(Elevator *elev);
+
+int queue_look_for_any_order(Elevator *elev);
 
 //Returns direction of the next order to be treated
 int queue_get_movement_direction(Elevator *elev);
@@ -31,7 +36,6 @@ int queue_get_direction_of_order(Elevator *elev);
 //Iterates through all elements of queue_matrix to see if any elements in the current direction is set to 1. Returns 1 if it is, 0 otherwise.
 int queue_active_orders_in_current_direction(Elevator *elev);
 
-//Returns true if there are any untreated orders at current floor, 0 otherwise
-int queue_orders_current_floor(Elevator *elev);
+int queue_check_orders_current_floor(Elevator* elev);
 
 #endif

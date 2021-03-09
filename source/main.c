@@ -29,6 +29,10 @@ int main(){
     clear_all_order_lights();
 
     while(1) {
+        printf("LD: %d\n", p_elevator->last_dir);
+        printf("LOD: %d\n", p_elevator->current_order_dir);
+        printf("CF: %d\n", p_elevator->current_floor);
+
         queue_set_orders(p_elevator);
         
         order_light_on(p_elevator);
@@ -36,60 +40,39 @@ int main(){
         stop_signal_handler(p_elevator);
         
         switch(elevator.current_state) {
-            case IDLE_IN_FLOOR:
-                //printf("ENTERED IDLE STATE\n");
-                printf("Last order direction [%d]\n", elevator.current_order_dir);
-                if(queue_orders_current_floor(p_elevator)) {
-                    elevator.current_state = DOOR_OPEN;
-                }
 
-                if(queue_active_orders(p_elevator)) {
-                    elevator.last_dir = elevator.current_dir;
-                    elevator.current_dir = queue_get_movement_direction(p_elevator);
+            case IDLE_IN_FLOOR:
+                printf("ENTERED IDLE STATE\n");
+                if(queue_orders_current_floor(p_elevator)) {
+                    p_elevator->current_state = DOOR_OPEN;
+                }
+                else if(queue_active_orders(p_elevator)) {
+                    elevator.current_movement = queue_get_movement_direction(p_elevator);
                     elevator.current_state = MOVEMENT;
                 }
-
                 break;
                 
             case IDLE_IN_SHAFT:
                 printf("ENTERED IDLE IN SHAFT\n");
                 if(queue_active_orders(p_elevator)) {
-                    elevator.last_dir = elevator.current_dir;
-                    elevator.current_dir = queue_get_movement_direction(p_elevator);
+                    elevator.current_movement = queue_get_movement_direction(p_elevator);
                     elevator.current_state = MOVEMENT;
                 }
                 break;
 
             case MOVEMENT:
-                //printf("ENTERED MOVEMENT STATE\n");
+                printf("ENTERED MOVEMENT STATE\n");
 
-                hardware_command_movement(elevator.current_dir);
+                hardware_command_movement(elevator.current_movement);
                 
                 update_floor(p_elevator);
 
-                if(hardware_read_floor_sensor(elevator.current_floor)) { 
-                    //Check if anyone inside the elevator has requested to get off the elevator at this floor
-                    if(queue_get_order(p_elevator, HARDWARE_ORDER_INSIDE, elevator.current_floor)) {
-                        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                        elevator.last_dir = elevator.current_dir;
-                        elevator.current_dir = HARDWARE_MOVEMENT_STOP;
-                        elevator.current_state = DOOR_OPEN;
-                    }
-                    
-                    //Check if anyone outside the elevator has requested to step into the elevator in the current direction at this floor
-                    else if(queue_get_order(p_elevator, elevator.current_dir, elevator.current_floor)) {
-                        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                        elevator.last_dir = elevator.current_dir;
-                        elevator.current_dir = HARDWARE_MOVEMENT_STOP;
-                        elevator.current_state = DOOR_OPEN;
-                    }
-                    //If there are no active orders in the current direction. Then there must be a active order on the current floor in the opposite direction
-                    else if(!queue_active_orders_in_current_direction(p_elevator)) {
-                        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                        elevator.last_dir = elevator.current_dir;
-                        elevator.current_dir = HARDWARE_MOVEMENT_STOP;
-                        elevator.current_state = DOOR_OPEN; 
-                    } 
+                if(hardware_read_floor_sensor(elevator.current_floor) && queue_check_orders_current_floor(p_elevator)) { 
+                    hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+                    elevator.last_dir = elevator.current_movement;
+                    elevator.current_movement = HARDWARE_MOVEMENT_STOP;
+                    elevator.current_state = DOOR_OPEN; 
+                
                 }
                 break;
 
