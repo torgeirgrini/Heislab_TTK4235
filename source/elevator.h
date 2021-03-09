@@ -21,7 +21,6 @@ typedef struct Elevator {
     //direction of last order
     int current_order_dir;
 
-    
     state current_state;
     
     int stop_light_set;
@@ -36,5 +35,7 @@ Current_state to INIT.
 */
 void init_elevator(Elevator *elev);
 
+//on startup takes the elevator to idle in floor
+void elevator_startup_routine(Elevator *elev);
 
 #endif

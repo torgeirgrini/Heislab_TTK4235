@@ -113,20 +113,21 @@ int queue_get_direction_of_order(Elevator *elev) {
     return HARDWARE_MOVEMENT_STOP;
 }
 
-int queue_active_orders_in_current_direction(Elevator *elev) {
+int queue_active_orders_in_direction(Elevator *elev, int direction) {
 
     int start_floor_search = 0;
     int end_floor_search = 0;
 
-    if (elev->last_dir == HARDWARE_MOVEMENT_UP) {
+    if (direction == HARDWARE_MOVEMENT_UP) {
         start_floor_search = elev->current_floor+1;
         end_floor_search = HARDWARE_NUMBER_OF_FLOORS;
         if (elev->current_floor == HARDWARE_NUMBER_OF_FLOORS-1) {
+            printf("Case 1");
             return 0;
         }        
     }
     
-    else if (elev->last_dir == HARDWARE_MOVEMENT_DOWN) {
+    else if (direction == HARDWARE_MOVEMENT_DOWN) {
         start_floor_search = 0;
         end_floor_search = elev->current_floor;
         if(elev->current_floor == 0) {
@@ -141,6 +142,7 @@ int queue_active_orders_in_current_direction(Elevator *elev) {
             }
         }
     }
+    printf("Case 2");
     return 0;
 }
 
@@ -148,5 +150,5 @@ int queue_active_orders_in_current_direction(Elevator *elev) {
 int queue_check_orders_current_floor(Elevator* elev) {
     return queue_get_order(elev, HARDWARE_ORDER_INSIDE, elev->current_floor)
     || queue_get_order(elev, elev->current_movement, elev->current_floor)
-    || !queue_active_orders_in_current_direction(elev);
+    || !queue_active_orders_in_direction(elev, elev->current_movement);
 }

@@ -63,10 +63,12 @@ void update_floor(Elevator *elev) {
 }
 
 void adjust_floor_after_stop(Elevator *elev) {
-    if(!queue_active_orders_in_current_direction(elev) && (elev->last_dir == HARDWARE_MOVEMENT_DOWN) || !queue_active_orders_in_current_direction(elev) && (elev->last_dir == HARDWARE_MOVEMENT_DOWN)) {
+    if(!queue_active_orders_in_direction(elev, elev->last_dir) && (elev->last_dir == HARDWARE_MOVEMENT_DOWN) 
+    || !queue_active_orders_in_direction(elev, elev->last_dir) && (elev->last_dir == HARDWARE_MOVEMENT_DOWN)) {
         elev->current_floor--;
     }
-    else if(!queue_active_orders_in_current_direction(elev) && (elev->last_dir == HARDWARE_MOVEMENT_UP) || !queue_active_orders_in_current_direction(elev) && (elev->last_dir == HARDWARE_MOVEMENT_UP)) {
+    else if(!queue_active_orders_in_direction(elev, elev->last_dir) && (elev->last_dir == HARDWARE_MOVEMENT_UP) 
+    || !queue_active_orders_in_direction(elev, elev->last_dir) && (elev->last_dir == HARDWARE_MOVEMENT_UP)) {
         elev->current_floor++;
     } 
 }

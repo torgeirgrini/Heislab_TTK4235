@@ -5,7 +5,6 @@
 #include "timer.h"
 #include "utilities.h"
 #include "states.h"
-#include "init_state.h"
 #include "queue_handler.h"
 #include "elevator.h"
 #include <time.h>

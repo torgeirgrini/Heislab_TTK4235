@@ -34,7 +34,7 @@ int queue_get_movement_direction(Elevator *elev);
 int queue_get_direction_of_order(Elevator *elev);
 
 //Iterates through all elements of queue_matrix to see if any elements in the current direction is set to 1. Returns 1 if it is, 0 otherwise.
-int queue_active_orders_in_current_direction(Elevator *elev);
+int queue_active_orders_in_direction(Elevator *elev, int direction);
 
 int queue_check_orders_current_floor(Elevator* elev);
 
