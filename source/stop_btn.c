@@ -11,7 +11,6 @@ void stop_btn_handler(Elevator *p_elev) {
         if (p_elev->current_movement != HARDWARE_MOVEMENT_STOP) {
             p_elev->last_dir = p_elev->current_movement;
         }
-        
         p_elev->current_movement = HARDWARE_MOVEMENT_STOP;
         p_elev->current_state = STOP_BTN_SHAFT;
     }
