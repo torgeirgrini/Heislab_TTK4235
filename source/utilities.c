@@ -22,8 +22,8 @@ void clear_all_order_lights(){
     }
 }
 
-int opposite_direction(int current_dir) {
-    if (current_dir == HARDWARE_MOVEMENT_UP) {return HARDWARE_MOVEMENT_DOWN;}
-    if (current_dir == HARDWARE_MOVEMENT_DOWN) {return HARDWARE_MOVEMENT_UP;}
+HardwareMovement opposite_direction(HardwareMovement direction) {
+    if (direction == HARDWARE_MOVEMENT_UP) {return HARDWARE_MOVEMENT_DOWN;}
+    else if (direction == HARDWARE_MOVEMENT_DOWN) {return HARDWARE_MOVEMENT_UP;}
     return HARDWARE_MOVEMENT_STOP;
 }
