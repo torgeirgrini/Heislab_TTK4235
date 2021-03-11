@@ -20,13 +20,7 @@ int main(){
     elevator_startup_routine(p_elevator);
     clear_all_order_lights();
 
-
     while(1) {
-        printf("LD: %d\n", p_elevator->last_dir);
-        printf("LOD: %d\n", p_elevator->current_order_dir);
-        printf("CF: %d\n", p_elevator->current_floor);
-        printf("CM: %d\n", p_elevator->current_movement);
-
         queue_set_orders(p_elevator);
         elevator_order_light_on(p_elevator);
         stop_btn_handler(p_elevator);
@@ -62,7 +56,6 @@ int main(){
                     p_elevator->current_movement = HARDWARE_MOVEMENT_STOP;
                     p_elevator->current_order_dir = queue_get_direction_of_order(p_elevator);
                     p_elevator->current_state = DOOR_OPEN; 
-                
                 }
                 break;
 
