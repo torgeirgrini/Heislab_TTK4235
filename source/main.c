@@ -21,6 +21,9 @@ int main(){
     clear_all_order_lights();
 
     while(1) {
+        printf("PF: %d\n", p_elevator->previous_floor);
+        printf("CF: %d\n", p_elevator->current_floor);
+
         queue_set_orders(p_elevator);
         elevator_order_light_on(p_elevator);
         stop_btn_handler(p_elevator);
@@ -50,7 +53,7 @@ int main(){
                 hardware_command_movement(p_elevator->current_movement);
                 elevator_update_floor(p_elevator);
 
-                if(hardware_read_floor_sensor(p_elevator->current_floor) && queue_check_orders_current_floor(p_elevator)) { 
+                if(hardware_read_floor_sensor(p_elevator->current_floor) && queue_check_orders_current_floor(p_elevator) && (p_elevator->current_floor != p_elevator->previous_floor)) { 
                     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
                     p_elevator->last_dir = p_elevator->current_movement;
                     p_elevator->current_movement = HARDWARE_MOVEMENT_STOP;
@@ -109,8 +112,5 @@ int main(){
                 }
                 break;
         }
-
     }
-    //deallocate memory
-
 }

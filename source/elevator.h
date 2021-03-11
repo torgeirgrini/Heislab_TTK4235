@@ -8,10 +8,11 @@
 #define ELEVATOR_NUMBER_OF_ORDERS 3
 
 typedef struct Elevator {
-    int **pp_queue_matrix;
+    int queue_matrix[ELEVATOR_NUMBER_OF_ORDERS][HARDWARE_NUMBER_OF_FLOORS];
 
     /* Memory variables */
     int current_floor;
+    int previous_floor;
     int current_movement;
     int last_dir;
     int current_order_dir;
