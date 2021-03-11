@@ -1,5 +1,5 @@
-SIM := true
-SOURCES := main.c timer.c utilities.c queue_handler.c elevator.c states.c
+SIM := false
+SOURCES := main.c timer.c utilities.c queue_handler.c elevator.c states.c stop_btn.c
 
 SOURCE_DIR := source
 BUILD_DIR := build

@@ -2,40 +2,39 @@
 #define ELEVATOR_H
 
 #include <stdlib.h>
-#include "hardware.h"
+#include "utilities.h"
 #include "states.h"
 
 #define ELEVATOR_NUMBER_OF_ORDERS 3
 
 typedef struct Elevator {
-    //queue handler matrix
-    int **queue_matrix;
+    int **pp_queue_matrix;
 
-    /* Control variables */
-    //last floor sensor
+    /* Memory variables */
     int current_floor;
-    //current direction
     int current_movement;
-    //last direction
     int last_dir;
-    //direction of last order
     int current_order_dir;
-
     state current_state;
     
+    /* Control variables */
     int stop_light_set;
     int timer_set;
 
-     
 } Elevator;
 
 /*
 Initializes the queue matrix to zero matrix. Current_floor to the current floor [0,4), or -1 if in the shaft. Current_dir to 1.
 Current_state to INIT.
 */
-void init_elevator(Elevator *elev);
+void elevator_init(Elevator *p_elev);
 
 //on startup takes the elevator to idle in floor
-void elevator_startup_routine(Elevator *elev);
+void elevator_startup_routine(Elevator *p_elev);
+
+void elevator_order_light_on(Elevator *p_elev);
+
+void elevator_update_floor(Elevator *p_elev);
+
 
 #endif
