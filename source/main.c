@@ -5,11 +5,9 @@
 #include "timer.h"
 #include "utilities.h"
 #include "states.h"
-#include "init_state.h"
 #include "queue_handler.h"
-#include "time.h"
 #include "elevator.h"
-#include "idle_state.h"
+#include <time.h>
 
 
 int main(){
@@ -22,181 +20,118 @@ int main(){
 
     clock_t before;
 
-    Elevator elevator_struct;
-    Elevator *elevator_struct_ptr = &elevator_struct;
-    init_elevator(elevator_struct_ptr);
-    elevator_startup_routine(elevator_struct_ptr);
-    elevator_struct.current_state = IDLE_IN_FLOOR;
-
+    Elevator elevator;
+    Elevator *p_elevator = &elevator;
+    init_elevator(p_elevator);
+    elevator_startup_routine(p_elevator);
     clear_all_order_lights();
 
+
     while(1) {
+        printf("LD: %d\n", p_elevator->last_dir);
+        printf("LOD: %d\n", p_elevator->current_order_dir);
+        printf("CF: %d\n", p_elevator->current_floor);
+        printf("CM: %d\n", p_elevator->current_movement);
 
-/*
-    //Prints the queue_matrix
-    for(int i = 0; i < QUEUE_HANDLER_NUMBER_OF_ROWS; i++) {
-        for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
-            printf(" %d", elevator_struct.queue_handler[i][j]);
-        }
-        printf("\n");
-    }
-    printf("\n");
-*/
-
-        queue_matrix_update(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS);
+        queue_set_orders(p_elevator);
         
-        //Prints the queue_matrix
-        for(int i = 0; i < QUEUE_HANDLER_NUMBER_OF_ROWS; i++) {
-            for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
-                hardware_command_order_light(j, i, elevator_struct.queue_handler[i][j]);
-            }
-        }
+        order_light_on(p_elevator);
 
-        switch(elevator_struct.current_state) {
+        stop_signal_handler(p_elevator);
+        
+        switch(p_elevator->current_state) {
+
             case IDLE_IN_FLOOR:
                 printf("ENTERED IDLE STATE\n");
-                //Check if anyone inside the elevator has requested to get off the elevator at this floor
-                if(hardware_read_stop_signal()) {
-                    elevator_struct.current_state = STOP_BTN_FLOOR;
+                if(queue_orders_current_floor(p_elevator)) {
+                    printf("DOOR OPENS IN IDLE");
+                    p_elevator->current_state = DOOR_OPEN;
                 }
-                printf("Current order direction %d\n", elevator_struct.current_order_dir);
-                for(int i = 0; i < 3; i++) {
-                    if(queue_matrix_get_order(elevator_struct.queue_handler, i, elevator_struct.current_floor)) {
-                        elevator_struct.current_state = DOOR_OPEN;
-                    }
-                }
-                elevator_struct.last_dir = elevator_struct.current_dir;
-                elevator_struct.current_dir = queue_matrix_active_orders(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS, elevator_struct.current_floor, elevator_struct.current_order_dir);
-                printf("Current elevator direction %d\n", elevator_struct.current_dir);
-                if(elevator_struct.current_dir != HARDWARE_MOVEMENT_STOP) {
-                    elevator_struct.current_state = MOVEMENT;
+                else if(queue_active_orders(p_elevator)) {
+                    p_elevator->current_movement = queue_get_movement_direction(p_elevator);
+                    p_elevator->current_state = MOVEMENT;
                 }
                 break;
                 
             case IDLE_IN_SHAFT:
                 printf("ENTERED IDLE IN SHAFT\n");
-                if(hardware_read_stop_signal()) {
-                    elevator_struct.current_state = STOP_BTN_SHAFT;
-                }
-                elevator_struct.last_dir = elevator_struct.current_dir;
-                elevator_struct.current_dir = queue_matrix_active_orders(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS, elevator_struct.current_floor, elevator_struct.current_order_dir);
-                if(elevator_struct.current_dir != HARDWARE_MOVEMENT_STOP) {
-                    elevator_struct.current_state = MOVEMENT;
+                
+                if(queue_active_orders(p_elevator)) {
+                    adjust_floor_after_stop(p_elevator);
+                    p_elevator->current_movement = queue_get_movement_direction(p_elevator);
+                    p_elevator->current_state = MOVEMENT;
                 }
                 break;
 
             case MOVEMENT:
-                //printf("ENTERED MOVEMENT STATE\n");
-                if(hardware_read_stop_signal()) {
+                printf("ENTERED MOVEMENT STATE\n");
+
+                hardware_command_movement(p_elevator->current_movement);
+                
+                update_floor(p_elevator);
+
+                if(hardware_read_floor_sensor(p_elevator->current_floor) && queue_check_orders_current_floor(p_elevator)) { 
+                    printf("DOOR OPENS");
                     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                    elevator_struct.last_dir = elevator_struct.current_dir;
-                    elevator_struct.current_dir = HARDWARE_MOVEMENT_STOP;
-                    elevator_struct.current_state = STOP_BTN_SHAFT;
-                }
-
-                hardware_command_movement(elevator_struct.current_dir);
-                int floor_read = read_all_floor_sensors(); //denne funker bare hvis kun en bestilling siden den returnerer den første den finner fra 0te etasje
-                if(floor_read != -1) {
-                    elevator_struct.current_floor = floor_read;
-                    hardware_command_floor_indicator_on(elevator_struct.current_floor);
-                }
-
-                if(hardware_read_floor_sensor(elevator_struct.current_floor)) { 
-                    //Check if anyone inside the elevator has requested to get off the elevator at this floor
-                    if(queue_matrix_get_order(elevator_struct.queue_handler, HARDWARE_ORDER_INSIDE, elevator_struct.current_floor)) {
-                        printf("case 1\n");
-                        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                        elevator_struct.last_dir = elevator_struct.current_dir;
-                        elevator_struct.current_dir = HARDWARE_MOVEMENT_STOP;
-                        elevator_struct.current_state = DOOR_OPEN;
-                    }
-                    
-                    //if(elevator_struct.queue_handler[elevator_struct.current_dir][elevator_struct.current_floor]) {
-                    //Check if anyone outside the elevator has requested to step into the elevator in the current direction at this floor
-                    else if(queue_matrix_get_order(elevator_struct.queue_handler, elevator_struct.current_dir, elevator_struct.current_floor)) {
-                        printf("case 2\n");
-                        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                        elevator_struct.last_dir = elevator_struct.current_dir;
-                        elevator_struct.current_dir = HARDWARE_MOVEMENT_STOP;
-                        elevator_struct.current_state = DOOR_OPEN;
-                    }
-                    
-                    //If there are no active orders in the current direction. Then look for active orders at the current floor in the other direction
-                    else if (!queue_matrix_active_orders_cur_dir(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS, elevator_struct.current_floor, elevator_struct.current_dir)) {
-                        if(queue_matrix_get_order(elevator_struct.queue_handler, elevator_opposite_dir(elevator_struct.current_dir), elevator_struct.current_floor)) {
-                            printf("case 3\n");
-                            printf("current direction %d\n", elevator_struct.current_dir);
-                            hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                            elevator_struct.last_dir = elevator_struct.current_dir;
-                            elevator_struct.current_dir = HARDWARE_MOVEMENT_STOP;
-                            elevator_struct.current_state = DOOR_OPEN; 
-                        } //trengs denne? Ja, trengs i tilfellet der feks heisen kommer fra 2 etasje for å ta en bestilling fra noen i tredje
-                            //etasje som skal ned, og det ikke finnes andre aktive ordre.
-                    }
+                    p_elevator->last_dir = p_elevator->current_movement;
+                    p_elevator->current_movement = HARDWARE_MOVEMENT_STOP;
+                    p_elevator->current_state = DOOR_OPEN; 
+                
                 }
                 break;
 
             case DOOR_OPEN:
                 printf("ENTERED DOOR OPEN STATE\n");
-                /*
-                if(hardware_read_stop_signal()) {
-                    elevator_struct.current_state = STOP_BTN_FLOOR;
-                }
-                */
                 hardware_command_door_open(1);
-                elevator_struct.current_state = TIMER;
+                p_elevator->current_state = TIMER;
                 break;
 
             case TIMER:
-                //printf("ENTERED TIMER STATE\n");
-                if(hardware_read_stop_signal()) {
-                    elevator_struct.current_state = STOP_BTN_FLOOR;
-                }
-                if(!elevator_struct.timer_set) {
-                    before = set_timer();
-                    elevator_struct.timer_set = 1;
+                printf("ENTERED TIMER STATE\n");
+                if(!p_elevator->timer_set) {
+                    before = timer_set();
+                    p_elevator->timer_set = 1;
                 }
                 if(hardware_read_obstruction_signal()) {
-                    before = set_timer();
+                    before = timer_set();
                 }
                 if (timer_finished(before, 3000)) {
                     hardware_command_door_open(0);
-                    elevator_struct.current_order_dir = queue_matrix_get_order_dir(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS, elevator_struct.current_floor, elevator_struct.current_dir, elevator_struct.last_dir);
-                    for(int i = 0; i < QUEUE_HANDLER_NUMBER_OF_ROWS; i++) {
-                        queue_matrix_delete_order(elevator_struct.queue_handler, i, elevator_struct.current_floor);
+                    p_elevator->current_order_dir = queue_get_direction_of_order(p_elevator);
+                    for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
+                        queue_delete_order(p_elevator, i, p_elevator->current_floor);
                     }
-                    elevator_struct.timer_set = 0;
-                    elevator_struct.current_state = IDLE_IN_FLOOR;
+                    p_elevator->timer_set = 0;
+                    p_elevator->current_state = IDLE_IN_FLOOR;
                 }
                     break;
 
             case STOP_BTN_SHAFT:
                 printf("ENTERED STOP BTN SHAFT STATE\n");
-                if(!elevator_struct.stop_light_set) {
+                if(!p_elevator->stop_light_set) {
                     hardware_command_stop_light(1);
-                    elevator_struct.stop_light_set = 1;
+                    p_elevator->stop_light_set = 1;
                 }
-                queue_matrix_clear(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS);
+                queue_clear(p_elevator);
                 if(!hardware_read_stop_signal()) {
-                    printf("STOP SIGNAL OFF");
                     hardware_command_stop_light(0);
-                    elevator_struct.stop_light_set = 0;
-                    elevator_struct.current_state = IDLE_IN_SHAFT;
+                    p_elevator->stop_light_set = 0;
+                    p_elevator->current_state = IDLE_IN_SHAFT;
                 }
                 break;
 
             case STOP_BTN_FLOOR:
                 printf("ENTERED STOP BTN FLOOR STATE\n");
-                if(!elevator_struct.stop_light_set) {
+                if(!p_elevator->stop_light_set) {
                     hardware_command_stop_light(1);
-                    elevator_struct.stop_light_set = 1;
+                    p_elevator->stop_light_set = 1;
                     hardware_command_door_open(1);
                 }
-                queue_matrix_clear(elevator_struct.queue_handler, HARDWARE_NUMBER_OF_FLOORS);
+                queue_clear(p_elevator);
                 if(!hardware_read_stop_signal()) {
                     hardware_command_stop_light(0);
-                    elevator_struct.stop_light_set = 0;
-                    elevator_struct.current_state = TIMER;
+                    p_elevator->stop_light_set = 0;
+                    p_elevator->current_state = TIMER;
                 }
                 break;
         }

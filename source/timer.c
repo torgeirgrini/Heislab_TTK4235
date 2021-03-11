@@ -1,6 +1,6 @@
 #include "timer.h"
 
-clock_t set_timer() {
+clock_t timer_set() {
     return clock();
 }
 

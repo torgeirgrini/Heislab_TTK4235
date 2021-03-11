@@ -1,26 +1,26 @@
 #ifndef ELEVATOR_H
 #define ELEVATOR_H
-#include "queue_handler.h"
+
+#include <stdlib.h>
 #include "hardware.h"
 #include "states.h"
 
-typedef struct Elevator {
+#define ELEVATOR_NUMBER_OF_ORDERS 3
 
+typedef struct Elevator {
     //queue handler matrix
-    int **queue_handler;
+    int **queue_matrix;
 
     /* Control variables */
-
     //last floor sensor
     int current_floor;
     //current direction
-    int current_dir;
+    int current_movement;
     //last direction
     int last_dir;
     //direction of last order
     int current_order_dir;
 
-    
     state current_state;
     
     int stop_light_set;
@@ -35,7 +35,7 @@ Current_state to INIT.
 */
 void init_elevator(Elevator *elev);
 
-
-
+//on startup takes the elevator to idle in floor
+void elevator_startup_routine(Elevator *elev);
 
 #endif
