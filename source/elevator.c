@@ -4,7 +4,7 @@ void elevator_init(Elevator *p_elev) {
     p_elev->current_floor = -1;
     p_elev->previous_floor = -1;
     p_elev->current_movement = HARDWARE_MOVEMENT_STOP;
-    p_elev->current_state = IDLE_IN_FLOOR;
+    p_elev->current_state = INIT;
     p_elev->stop_light_set = 0;
     p_elev->timer_set = 0;
     p_elev->order_direction = HARDWARE_MOVEMENT_STOP;
@@ -25,6 +25,7 @@ void elevator_startup_routine(Elevator *p_elev) {
     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
     p_elev->previous_direction = HARDWARE_MOVEMENT_UP;
     p_elev->current_movement = HARDWARE_MOVEMENT_STOP;
+    p_elev->current_state = IDLE_IN_FLOOR;
     elevator_update_floor(p_elev);
 }
 
