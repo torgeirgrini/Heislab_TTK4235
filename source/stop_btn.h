@@ -16,7 +16,7 @@
 void stop_btn_handler(Elevator *p_elev);
 
 /**
- * @brief Workaround for issue with movement after the stop button is released. 
+ * @brief Workaround for issue with movement after the stop button is released when in shaft. 
  * If there are no orders in the last direction and last direction is downwards, the current floor is decremented.
  * If there are no orders in the last direction and last direction is upwards, the current floor is incremented.
  * @param p_elev Pointer to an Elevator struct
