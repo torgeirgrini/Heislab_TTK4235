@@ -21,6 +21,7 @@ int main(){
     clear_all_order_lights();
 
     while(1) {
+        
         queue_set_orders(p_elevator);
         elevator_order_light_on(p_elevator);
         stop_btn_handler(p_elevator);
@@ -29,7 +30,7 @@ int main(){
 
             case IDLE_IN_FLOOR:
                 if(queue_active_orders_floor(p_elevator, p_elevator->current_floor)) {
-                    p_elevator->current_order_dir = queue_get_direction_of_order(p_elevator);
+                    p_elevator->order_direction = queue_get_direction_of_order(p_elevator);
                     p_elevator->current_state = DOOR_OPEN;
                 }
                 else if(queue_active_orders_all_floors(p_elevator)) {
@@ -52,9 +53,9 @@ int main(){
 
                 if(hardware_read_floor_sensor(p_elevator->current_floor) && queue_check_orders_current_floor(p_elevator) && (p_elevator->current_floor != p_elevator->previous_floor)) { 
                     hardware_command_movement(HARDWARE_MOVEMENT_STOP);
-                    p_elevator->last_dir = p_elevator->current_movement;
+                    p_elevator->previous_direction = p_elevator->current_movement;
                     p_elevator->current_movement = HARDWARE_MOVEMENT_STOP;
-                    p_elevator->current_order_dir = queue_get_direction_of_order(p_elevator);
+                    p_elevator->order_direction = queue_get_direction_of_order(p_elevator);
                     p_elevator->current_state = DOOR_OPEN; 
                 }
                 break;

@@ -64,7 +64,7 @@ HardwareMovement queue_get_movement_direction(Elevator *p_elev) {
     int end_floor_search = 0;
     if(queue_active_orders_floor(p_elev, p_elev->current_floor)) {return HARDWARE_MOVEMENT_STOP;}
 
-    switch (p_elev->current_order_dir){
+    switch (p_elev->order_direction){
     case HARDWARE_MOVEMENT_UP:
 
         start_floor_search = p_elev->current_floor+1;
@@ -90,8 +90,8 @@ HardwareMovement queue_get_movement_direction(Elevator *p_elev) {
 
 HardwareOrder queue_get_direction_of_order(Elevator *p_elev) {
 
-    if(queue_get_order(p_elev, p_elev->last_dir, p_elev->current_floor)) {return p_elev->last_dir;}
-    else if(queue_get_order(p_elev, opposite_direction(p_elev->last_dir), p_elev->current_floor)) {return opposite_direction(p_elev->last_dir);}
+    if(queue_get_order(p_elev, p_elev->previous_direction, p_elev->current_floor)) {return p_elev->previous_direction;}
+    else if(queue_get_order(p_elev, opposite_direction(p_elev->previous_direction), p_elev->current_floor)) {return opposite_direction(p_elev->previous_direction);}
 
     return HARDWARE_MOVEMENT_STOP;
 }
