@@ -20,8 +20,8 @@
  * @param current_floor Holds the value for the current or last visited floor
  * @param previous_floor Holds the value for the previous visited floor
  * @param current_movement Holds the value for the current direction of the elevator
- * @param last_dir Holds the value for the previous direction of the elevator
- * @param current_order_dir Holds the value for the order type of the last handled order
+ * @param previous_direction Holds the value for the previous direction of the elevator
+ * @param order_direction Holds the value for the order type of the last handled order
  * @param current_state Holds the current state for the elevator
  * @param stop_light_set A truthy value for if the stop light is set
  * @param timer_set A truthy value for if the timer has been set
@@ -34,8 +34,8 @@ typedef struct Elevator {
     int current_floor;
     int previous_floor;
     HardwareMovement current_movement;
-    HardwareMovement last_dir;
-    HardwareOrder current_order_dir;
+    HardwareMovement previous_direction;
+    HardwareOrder order_direction;
     state current_state;
     
     /* Control variables */
