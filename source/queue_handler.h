@@ -65,24 +65,49 @@ int queue_active_orders_floor(Elevator *p_elev, int floor);
 int queue_active_orders_all_floors(Elevator *p_elev);
 
 /**
- * @brief Checks for the direction for the elevator to move independent of priority
+ * @brief Checks for the direction for the elevator to move, independent of priorities
  * 
  * @param[in] p_elev pointer to an Elevator struct
  * 
- * @return the direction for the elevator that @p p_elev represents to move
+ * @return direction for the elevator @p p_elev to move without order priorities
  */
 HardwareMovement queue_get_movement_any_direction(Elevator *p_elev);
 
-//Returns direction of the next order to be treated
+/**
+ * @brief Checks for the direction for the elevator to move, with priorities
+ * 
+ * @param[in] p_elev pointer to an Elevator struct
+ * 
+ * @return direction for the next order the elevator @p p_elev should handle
+ */
 HardwareMovement queue_get_movement_direction(Elevator *p_elev);
 
-//Returns the order type of the order which is to be treated
+/**
+ * @brief Checks the order type of the order just handled
+ * 
+ * @param[in] p_elev pointer an Elevator struct
+ * 
+ * @return the order type of the order which the elevator @p p_elev just handled
+ */
 HardwareOrder queue_get_direction_of_order(Elevator *p_elev);
 
-//Iterates through all elements of queue_matrix to see if any elements in the direction direction_type is set to 1. Returns 1 if it is, 0 otherwise.
+/**
+ * @brief Checks if there are any unhandled orders at the floors in which the @p direction_type specifies
+ * 
+ * @param[in] p_elev pointer to an Elevator struct
+ * @param[in] direction_type direction that the search for orders should be done in
+ * 
+ * @return 1 if there are unhandled orders for the elevator @p p_elev in the direction of @p direction_type, 0 otherwise
+ */
 int queue_active_orders_in_direction(Elevator *p_elev, HardwareMovement direction_type);
 
-//Checks if any orders at the current floor are to be treated next
+/**
+ * @brief Checks if there are any orders at the current floor of @p p_elev which are to be handled next
+ * 
+ * @param[in] p_elev pointer to an Elevator struct
+ * 
+ * @return 1 if there are orders to handle next at current floor of @p p_elev , 0 otherwise 
+ */
 int queue_check_orders_current_floor(Elevator* p_elev);
 
 #endif
