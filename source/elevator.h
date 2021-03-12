@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief A library for an Elevator struct, and for operations on Elevator struct
+ */
+
 #ifndef ELEVATOR_H
 #define ELEVATOR_H
 
@@ -7,15 +12,30 @@
 
 #define ELEVATOR_NUMBER_OF_ORDERS 3
 
+/**
+ * @brief An Elevator struct which holds a queue system, memory variables and control variables
+ * 
+ * @param queue_matrix A matrix that a value of every type of order at every floor for the elevator. The values
+ * are 0 for a none active order, and non-zero for an active order
+ * @param current_floor Holds the value for the current or last visited floor
+ * @param previous_floor Holds the value for the previous visited floor
+ * @param current_movement Holds the value for the current direction of the elevator
+ * @param last_dir Holds the value for the previous direction of the elevator
+ * @param current_order_dir Holds the value for the order type of the last handled order
+ * @param current_state Holds the current state for the elevator
+ * @param stop_light_set A truthy value for if the stop light is set
+ * @param timer_set A truthy value for if the timer has been set
+ * 
+*/
 typedef struct Elevator {
     int queue_matrix[ELEVATOR_NUMBER_OF_ORDERS][HARDWARE_NUMBER_OF_FLOORS];
 
     /* Memory variables */
     int current_floor;
     int previous_floor;
-    int current_movement;
-    int last_dir;
-    int current_order_dir;
+    HardwareMovement current_movement;
+    HardwareMovement last_dir;
+    HardwareOrder current_order_dir;
     state current_state;
     
     /* Control variables */
