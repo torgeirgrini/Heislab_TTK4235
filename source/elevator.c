@@ -7,8 +7,8 @@ void elevator_init(Elevator *p_elev) {
     p_elev->current_state = IDLE_IN_FLOOR;
     p_elev->stop_light_set = 0;
     p_elev->timer_set = 0;
-    p_elev->current_order_dir = HARDWARE_MOVEMENT_STOP;
-    p_elev->last_dir=HARDWARE_MOVEMENT_STOP;
+    p_elev->order_direction = HARDWARE_MOVEMENT_STOP;
+    p_elev->previous_direction=HARDWARE_MOVEMENT_STOP;
 
     for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
         for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
@@ -29,7 +29,7 @@ void elevator_startup_routine(Elevator *p_elev) {
             p_elev->current_floor = i;
         }
     }
-    p_elev->last_dir = HARDWARE_MOVEMENT_UP;
+    p_elev->previous_direction = HARDWARE_MOVEMENT_UP;
     hardware_command_floor_indicator_on(p_elev->current_floor);
 }
 
