@@ -21,6 +21,7 @@ int main(){
     clear_all_order_lights();
 
     while(1) {
+        
         queue_set_orders(p_elevator);
         elevator_order_light_on(p_elevator);
         stop_btn_handler(p_elevator);

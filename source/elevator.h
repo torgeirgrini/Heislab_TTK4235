@@ -44,17 +44,35 @@ typedef struct Elevator {
 
 } Elevator;
 
-/*
-Initializes the queue matrix to zero matrix. Current_floor to the current floor [0,4), or -1 if in the shaft. Current_dir to 1.
-Current_state to INIT.
-*/
+
+/**
+ * @brief Initialises the elements of @p p_elev and sets queue_matrix to a zero matrix.
+ * 
+ * @param[out] p_elev Pointer to an Elevator struct
+ */
 void elevator_init(Elevator *p_elev);
 
+/**
+ * @brief Moves the elevator to a defined state and sets current_movement, 
+ * current_direction and previous_direction in @p p_elev
+ * 
+ * @param[out] p_elev Pointer to an Elevator struct
+ */ 
 //on startup takes the elevator to idle in floor
 void elevator_startup_routine(Elevator *p_elev);
 
+/**
+ * @brief Sets the order_lights in which the @p p_elev has active orders
+ * 
+ * @param[in] p_elev Pointer to an Elevator struct
+ */
 void elevator_order_light_on(Elevator *p_elev);
 
+/**
+ * @brief Updates current_floor and previous_floor in @p p_elev and sets the floor indicator
+ * 
+ * @param[in, out] p_elev
+ */
 void elevator_update_floor(Elevator *p_elev);
 
 
