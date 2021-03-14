@@ -80,7 +80,7 @@ HardwareMovement queue_get_movement_any_direction(Elevator *p_elev);
  * 
  * @return Direction for @p p_elev to move
  */
-HardwareMovement queue_get_movement_direction(Elevator *p_elev);
+HardwareMovement queue_get_movement_pri_direction(Elevator *p_elev);
 
 /**
  * @brief Checks the order type of the order just handled

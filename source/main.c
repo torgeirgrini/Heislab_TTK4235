@@ -34,7 +34,7 @@ int main(){
                     p_elevator->current_state = DOOR_OPEN;
                 }
                 else if(queue_active_orders_all_floors(p_elevator)) {
-                    p_elevator->current_movement = queue_get_movement_direction(p_elevator);
+                    p_elevator->current_movement = queue_get_movement_pri_direction(p_elevator);
                     p_elevator->current_state = MOVEMENT;
                 }
                 break;
@@ -42,7 +42,7 @@ int main(){
             case IDLE_IN_SHAFT:
                 if(queue_active_orders_all_floors(p_elevator)) {
                     stop_btn_adjust_floor(p_elevator);
-                    p_elevator->current_movement = queue_get_movement_direction(p_elevator);
+                    p_elevator->current_movement = queue_get_movement_pri_direction(p_elevator);
                     p_elevator->current_state = MOVEMENT;
                 }
                 break;

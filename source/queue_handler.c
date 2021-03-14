@@ -57,7 +57,7 @@ HardwareMovement queue_get_movement_any_direction(Elevator *p_elev) {
 }
 
 
-HardwareMovement queue_get_movement_direction(Elevator *p_elev) {
+HardwareMovement queue_get_movement_pri_direction(Elevator *p_elev) {
     int start_floor_search = 0;
     int end_floor_search = 0;
     if(queue_active_orders_floor(p_elev, p_elev->current_floor)) {return HARDWARE_MOVEMENT_STOP;}
