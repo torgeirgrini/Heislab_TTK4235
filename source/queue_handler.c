@@ -34,10 +34,8 @@ int queue_active_orders_floor(Elevator *p_elev, int floor) {
 }
 
 int queue_active_orders_all_floors(Elevator *p_elev) {
-    for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
-        for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
-            if (p_elev->queue_matrix[i][j]) {return 1;}
-        }
+    for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
+        if (queue_active_orders_floor(p_elev, j)) {return 1;}
     }
     return 0;
 }

@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief A library for an Elevator struct, and for operations on Elevator struct
+ * @brief Library for an Elevator struct, and for operations on an Elevator struct
  */
 
 #ifndef ELEVATOR_H
@@ -15,10 +15,10 @@
 /**
  * @brief An Elevator struct which holds a queue system, memory variables and control variables
  * 
- * @param queue_matrix A matrix that a value of every type of order at every floor for the elevator. The values
- * are 0 for a none active order, and non-zero for an active order
+ * @param queue_matrix A matrix that holds a value for every type of order at every floor for the elevator. The values
+ * are non-zero for an active order and zero for a none-active order
  * @param current_floor Holds the value for the current or last visited floor
- * @param previous_floor Holds the value for the previous visited floor
+ * @param previous_floor Holds the value for the previously visited floor
  * @param current_movement Holds the value for the current direction of the elevator
  * @param previous_direction Holds the value for the previous direction of the elevator
  * @param order_direction Holds the value for the order type of the last handled order
@@ -46,7 +46,7 @@ typedef struct Elevator {
 
 
 /**
- * @brief Initialises the elements of @p p_elev and sets queue_matrix to a zero matrix.
+ * @brief Initialises the elements of @p p_elev and sets queue_matrix to a zero matrix. Sets current_state to IDLE.
  * 
  * @param[out] p_elev Pointer to an Elevator struct
  */
@@ -54,15 +54,14 @@ void elevator_init(Elevator *p_elev);
 
 /**
  * @brief Moves the elevator to a defined state and sets current_movement, 
- * current_direction and previous_direction in @p p_elev
+ * current_direction and previous_direction in @p p_elev. Sets current_state to IDLE_IN_FLOOR upon success
  * 
  * @param[out] p_elev Pointer to an Elevator struct
  */ 
-//on startup takes the elevator to idle in floor
 void elevator_startup_routine(Elevator *p_elev);
 
 /**
- * @brief Sets the order_lights in which the @p p_elev has active orders
+ * @brief Sets the order lights for the order types and floors, in which @p p_elev has active orders
  * 
  * @param[in] p_elev Pointer to an Elevator struct
  */

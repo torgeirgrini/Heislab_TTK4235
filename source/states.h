@@ -1,13 +1,13 @@
 /**
 * @file
-* @brief Header file containing the state enum
+* @brief Library containing the state enum
 */
 
 #ifndef STATES_H
 #define STATES_H
 
 /**
- * @enum Enum containing all 
+ * @enum Enum containing all states
  */
 
 typedef enum state {
