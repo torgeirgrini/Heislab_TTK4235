@@ -7,8 +7,6 @@
 
 #include "elevator.h"
 
-#define QUEUE_HANDLER_NUMBER_OF_ROWS 3
-
 /**
  * @brief Sets all elements of queue_matrix in an Elevator struct to zero.
  * 
