@@ -11,5 +11,5 @@ digraph "source/elevator.h"
   Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
   Node4 [label="hardware.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$hardware_8h.html",tooltip="Driver for the elevator hardware."];
   Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
-  Node5 [label="states.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$states_8h.html",tooltip="Library containing the state enum."];
+  Node5 [label="states.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$states_8h.html",tooltip="Enum containing the states of the elevator."];
 }
