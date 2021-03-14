@@ -1,5 +1,5 @@
-\hypertarget{stop__btn_8h}{}\section{source/stop\+\_\+btn.h File Reference}
-\label{stop__btn_8h}\index{source/stop\+\_\+btn.\+h@{source/stop\+\_\+btn.\+h}}
+\hypertarget{stop__btn_8h}{}\doxysection{source/stop\+\_\+btn.h File Reference}
+\label{stop__btn_8h}\index{source/stop\_btn.h@{source/stop\_btn.h}}
 
 
 Library for stop button operations.  
@@ -22,26 +22,26 @@ This graph shows which files directly or indirectly include this file\+:
 \includegraphics[width=272pt]{stop__btn_8h__dep__incl}
 \end{center}
 \end{figure}
-\subsection*{Functions}
+\doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{stop__btn_8h_add6b1ba1c87893359dbbcdddd8b302e8}{stop\+\_\+btn\+\_\+handler} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
-\begin{DoxyCompactList}\small\item\em Decides elevator behavior when stop button is pressed. If a floor sensor is activated the state of the elevator is to be set to S\+T\+O\+P\+\_\+\+B\+T\+N\+\_\+\+F\+L\+O\+OR. Otherwise the state of the elevator is to be set to S\+T\+O\+P\+\_\+\+B\+T\+N\+\_\+\+S\+H\+A\+FT. \end{DoxyCompactList}\item 
-void \hyperlink{stop__btn_8h_a11f51bbe19a93eecf5b900edeb26d161}{stop\+\_\+btn\+\_\+adjust\+\_\+floor} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+void \mbox{\hyperlink{stop__btn_8h_add6b1ba1c87893359dbbcdddd8b302e8}{stop\+\_\+btn\+\_\+handler}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Decides elevator behavior when stop button is pressed. If a floor sensor is activated the state of the elevator is to be set to STOP\+\_\+\+BTN\+\_\+\+FLOOR. Otherwise the state of the elevator is to be set to STOP\+\_\+\+BTN\+\_\+\+SHAFT. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{stop__btn_8h_a11f51bbe19a93eecf5b900edeb26d161}{stop\+\_\+btn\+\_\+adjust\+\_\+floor}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$p\+\_\+elev)
 \begin{DoxyCompactList}\small\item\em Workaround for issue with movement after the stop button is released when in shaft. If there are no orders in the last direction and last direction is downwards, the current floor is decremented. If there are no orders in the last direction and last direction is upwards, the current floor is incremented. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{Detailed Description}
+\doxysubsection{Detailed Description}
 Library for stop button operations. 
 
 
 
-\subsection{Function Documentation}
+\doxysubsection{Function Documentation}
 \mbox{\Hypertarget{stop__btn_8h_a11f51bbe19a93eecf5b900edeb26d161}\label{stop__btn_8h_a11f51bbe19a93eecf5b900edeb26d161}} 
-\index{stop\+\_\+btn.\+h@{stop\+\_\+btn.\+h}!stop\+\_\+btn\+\_\+adjust\+\_\+floor@{stop\+\_\+btn\+\_\+adjust\+\_\+floor}}
-\index{stop\+\_\+btn\+\_\+adjust\+\_\+floor@{stop\+\_\+btn\+\_\+adjust\+\_\+floor}!stop\+\_\+btn.\+h@{stop\+\_\+btn.\+h}}
-\subsubsection{\texorpdfstring{stop\+\_\+btn\+\_\+adjust\+\_\+floor()}{stop\_btn\_adjust\_floor()}}
-{\footnotesize\ttfamily void stop\+\_\+btn\+\_\+adjust\+\_\+floor (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+\index{stop\_btn.h@{stop\_btn.h}!stop\_btn\_adjust\_floor@{stop\_btn\_adjust\_floor}}
+\index{stop\_btn\_adjust\_floor@{stop\_btn\_adjust\_floor}!stop\_btn.h@{stop\_btn.h}}
+\doxysubsubsection{\texorpdfstring{stop\_btn\_adjust\_floor()}{stop\_btn\_adjust\_floor()}}
+{\footnotesize\ttfamily void stop\+\_\+btn\+\_\+adjust\+\_\+floor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
 
 
 
@@ -49,7 +49,7 @@ Workaround for issue with movement after the stop button is released when in sha
 
 
 \begin{DoxyParams}{Parameters}
-{\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
+{\em p\+\_\+elev} & Pointer to an \mbox{\hyperlink{structElevator}{Elevator}} struct \\
 \hline
 \end{DoxyParams}
 
@@ -57,18 +57,18 @@ Workaround for issue with movement after the stop button is released when in sha
 Definition at line 19 of file stop\+\_\+btn.\+c.
 
 \mbox{\Hypertarget{stop__btn_8h_add6b1ba1c87893359dbbcdddd8b302e8}\label{stop__btn_8h_add6b1ba1c87893359dbbcdddd8b302e8}} 
-\index{stop\+\_\+btn.\+h@{stop\+\_\+btn.\+h}!stop\+\_\+btn\+\_\+handler@{stop\+\_\+btn\+\_\+handler}}
-\index{stop\+\_\+btn\+\_\+handler@{stop\+\_\+btn\+\_\+handler}!stop\+\_\+btn.\+h@{stop\+\_\+btn.\+h}}
-\subsubsection{\texorpdfstring{stop\+\_\+btn\+\_\+handler()}{stop\_btn\_handler()}}
-{\footnotesize\ttfamily void stop\+\_\+btn\+\_\+handler (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+\index{stop\_btn.h@{stop\_btn.h}!stop\_btn\_handler@{stop\_btn\_handler}}
+\index{stop\_btn\_handler@{stop\_btn\_handler}!stop\_btn.h@{stop\_btn.h}}
+\doxysubsubsection{\texorpdfstring{stop\_btn\_handler()}{stop\_btn\_handler()}}
+{\footnotesize\ttfamily void stop\+\_\+btn\+\_\+handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
 
 
 
-Decides elevator behavior when stop button is pressed. If a floor sensor is activated the state of the elevator is to be set to S\+T\+O\+P\+\_\+\+B\+T\+N\+\_\+\+F\+L\+O\+OR. Otherwise the state of the elevator is to be set to S\+T\+O\+P\+\_\+\+B\+T\+N\+\_\+\+S\+H\+A\+FT. 
+Decides elevator behavior when stop button is pressed. If a floor sensor is activated the state of the elevator is to be set to STOP\+\_\+\+BTN\+\_\+\+FLOOR. Otherwise the state of the elevator is to be set to STOP\+\_\+\+BTN\+\_\+\+SHAFT. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in,out}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
+\mbox{\texttt{ in,out}}  & {\em p\+\_\+elev} & Pointer to an \mbox{\hyperlink{structElevator}{Elevator}} struct \\
 \hline
 \end{DoxyParams}
 

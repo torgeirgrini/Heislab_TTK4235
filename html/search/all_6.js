@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['states_2eh',['states.h',['../states_8h.html',1,'']]],
-  ['stop_5fbtn_2eh',['stop_btn.h',['../stop__btn_8h.html',1,'']]],
-  ['stop_5fbtn_5fadjust_5ffloor',['stop_btn_adjust_floor',['../stop__btn_8h.html#a11f51bbe19a93eecf5b900edeb26d161',1,'stop_btn.c']]],
-  ['stop_5fbtn_5fhandler',['stop_btn_handler',['../stop__btn_8h.html#add6b1ba1c87893359dbbcdddd8b302e8',1,'stop_btn.c']]]
+  ['opposite_5fdirection_25',['opposite_direction',['../utilities_8h.html#a4240666d5d1f83f5ef5d3dc8cab8f339',1,'utilities.c']]]
 ];
