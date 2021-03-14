@@ -1,0 +1,308 @@
+\hypertarget{queue__handler_8h}{}\section{source/queue\+\_\+handler.h File Reference}
+\label{queue__handler_8h}\index{source/queue\+\_\+handler.\+h@{source/queue\+\_\+handler.\+h}}
+
+
+Library for doing operations with a queue matrix defined in an \hyperlink{structElevator}{Elevator} struct.  
+
+
+{\ttfamily \#include \char`\"{}elevator.\+h\char`\"{}}\newline
+Include dependency graph for queue\+\_\+handler.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{queue__handler_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{queue__handler_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{queue__handler_8h_a4774b0c12e9bdb975cdc19125b9343d5}\label{queue__handler_8h_a4774b0c12e9bdb975cdc19125b9343d5}} 
+\#define {\bfseries Q\+U\+E\+U\+E\+\_\+\+H\+A\+N\+D\+L\+E\+R\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+R\+O\+WS}~3
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{queue__handler_8h_a27e5de46fbd8cac82f06fc5e6b64f37e}{queue\+\_\+clear} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Sets all elements of queue\+\_\+matrix in an \hyperlink{structElevator}{Elevator} struct to zero. \end{DoxyCompactList}\item 
+int \hyperlink{queue__handler_8h_a6a8f2e61bafeaadb36377a3664a681e3}{queue\+\_\+get\+\_\+order} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev, \hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order} order\+\_\+type, int floor)
+\begin{DoxyCompactList}\small\item\em Check a specified value in queue\+\_\+matrix in an \hyperlink{structElevator}{Elevator} struct. \end{DoxyCompactList}\item 
+void \hyperlink{queue__handler_8h_a3ce896fe20074af270bcbb349562dfd9}{queue\+\_\+set\+\_\+orders} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Updates queue\+\_\+matrix in an \hyperlink{structElevator}{Elevator} struct with new orders. \end{DoxyCompactList}\item 
+void \hyperlink{queue__handler_8h_a7b8d1f4f4b11dc91a3ed06449feea23d}{queue\+\_\+delete\+\_\+order} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev, \hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order} order\+\_\+type, int floor)
+\begin{DoxyCompactList}\small\item\em Sets a value specified by {\ttfamily order\+\_\+type} and {\ttfamily floor} in the queue\+\_\+matrix in {\ttfamily p\+\_\+elev} to zero. \end{DoxyCompactList}\item 
+int \hyperlink{queue__handler_8h_ac73d563781c8a925a2f48a0a0274013e}{queue\+\_\+active\+\_\+orders\+\_\+floor} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev, int floor)
+\begin{DoxyCompactList}\small\item\em Checks {\ttfamily floor} for any unhandled orders. \end{DoxyCompactList}\item 
+int \hyperlink{queue__handler_8h_a12d9773f1198f963edbd5cf50f177928}{queue\+\_\+active\+\_\+orders\+\_\+all\+\_\+floors} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Checks if there are any unhandled orders in {\ttfamily p\+\_\+elev}. \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement} \hyperlink{queue__handler_8h_af977d3c209c783b26fe5fd385a7799f3}{queue\+\_\+get\+\_\+movement\+\_\+any\+\_\+direction} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Checks for the direction for the elevator to move, independent of order priorities. \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement} \hyperlink{queue__handler_8h_a730a369784a44157f19c48e850068255}{queue\+\_\+get\+\_\+movement\+\_\+direction} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Checks for the direction for the elevator to move, with order priorities. If no priorities are found the function checks for directions for the elevator to move without order priorities. \end{DoxyCompactList}\item 
+\hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order} \hyperlink{queue__handler_8h_a5690c565e767b1bcdebb9c9a77d519e8}{queue\+\_\+get\+\_\+direction\+\_\+of\+\_\+order} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Checks the order type of the order just handled. \end{DoxyCompactList}\item 
+int \hyperlink{queue__handler_8h_a4d6b82c134f2aab959f52c4833b81d7d}{queue\+\_\+active\+\_\+orders\+\_\+in\+\_\+direction} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev, \hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement} direction\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Searches for any unhandled orders at the floors in the direction which {\ttfamily direction\+\_\+type} specifies. \end{DoxyCompactList}\item 
+int \hyperlink{queue__handler_8h_a2a38a3e344c7c67f695b302b4de47697}{queue\+\_\+check\+\_\+orders\+\_\+current\+\_\+floor} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Checks if there are any orders at the current floor of {\ttfamily p\+\_\+elev} which are to be handled next. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Library for doing operations with a queue matrix defined in an \hyperlink{structElevator}{Elevator} struct. 
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{queue__handler_8h_a12d9773f1198f963edbd5cf50f177928}\label{queue__handler_8h_a12d9773f1198f963edbd5cf50f177928}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+active\+\_\+orders\+\_\+all\+\_\+floors@{queue\+\_\+active\+\_\+orders\+\_\+all\+\_\+floors}}
+\index{queue\+\_\+active\+\_\+orders\+\_\+all\+\_\+floors@{queue\+\_\+active\+\_\+orders\+\_\+all\+\_\+floors}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+active\+\_\+orders\+\_\+all\+\_\+floors()}{queue\_active\_orders\_all\_floors()}}
+{\footnotesize\ttfamily int queue\+\_\+active\+\_\+orders\+\_\+all\+\_\+floors (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+
+
+
+Checks if there are any unhandled orders in {\ttfamily p\+\_\+elev}. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there are any unhandled orders for {\ttfamily p\+\_\+elev} 
+\end{DoxyReturn}
+
+
+Definition at line 36 of file queue\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{queue__handler_8h_ac73d563781c8a925a2f48a0a0274013e}\label{queue__handler_8h_ac73d563781c8a925a2f48a0a0274013e}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+active\+\_\+orders\+\_\+floor@{queue\+\_\+active\+\_\+orders\+\_\+floor}}
+\index{queue\+\_\+active\+\_\+orders\+\_\+floor@{queue\+\_\+active\+\_\+orders\+\_\+floor}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+active\+\_\+orders\+\_\+floor()}{queue\_active\_orders\_floor()}}
+{\footnotesize\ttfamily int queue\+\_\+active\+\_\+orders\+\_\+floor (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev,  }\item[{int}]{floor }\end{DoxyParamCaption})}
+
+
+
+Checks {\ttfamily floor} for any unhandled orders. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
+\hline
+\mbox{\tt in}  & {\em floor} & The floor to check\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there are any unhandled orders at {\ttfamily floor} for {\ttfamily p\+\_\+elev}, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file queue\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{queue__handler_8h_a4d6b82c134f2aab959f52c4833b81d7d}\label{queue__handler_8h_a4d6b82c134f2aab959f52c4833b81d7d}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+active\+\_\+orders\+\_\+in\+\_\+direction@{queue\+\_\+active\+\_\+orders\+\_\+in\+\_\+direction}}
+\index{queue\+\_\+active\+\_\+orders\+\_\+in\+\_\+direction@{queue\+\_\+active\+\_\+orders\+\_\+in\+\_\+direction}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+active\+\_\+orders\+\_\+in\+\_\+direction()}{queue\_active\_orders\_in\_direction()}}
+{\footnotesize\ttfamily int queue\+\_\+active\+\_\+orders\+\_\+in\+\_\+direction (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev,  }\item[{\hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement}}]{direction\+\_\+type }\end{DoxyParamCaption})}
+
+
+
+Searches for any unhandled orders at the floors in the direction which {\ttfamily direction\+\_\+type} specifies. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
+\hline
+\mbox{\tt in}  & {\em direction\+\_\+type} & Direction that the search for orders should be done in\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there are unhandled orders for {\ttfamily p\+\_\+elev} in the direction of {\ttfamily direction\+\_\+type}, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 97 of file queue\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{queue__handler_8h_a2a38a3e344c7c67f695b302b4de47697}\label{queue__handler_8h_a2a38a3e344c7c67f695b302b4de47697}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+check\+\_\+orders\+\_\+current\+\_\+floor@{queue\+\_\+check\+\_\+orders\+\_\+current\+\_\+floor}}
+\index{queue\+\_\+check\+\_\+orders\+\_\+current\+\_\+floor@{queue\+\_\+check\+\_\+orders\+\_\+current\+\_\+floor}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+check\+\_\+orders\+\_\+current\+\_\+floor()}{queue\_check\_orders\_current\_floor()}}
+{\footnotesize\ttfamily int queue\+\_\+check\+\_\+orders\+\_\+current\+\_\+floor (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+
+
+
+Checks if there are any orders at the current floor of {\ttfamily p\+\_\+elev} which are to be handled next. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there are orders to handle next at current floor of {\ttfamily p\+\_\+elev} , 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 119 of file queue\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{queue__handler_8h_a27e5de46fbd8cac82f06fc5e6b64f37e}\label{queue__handler_8h_a27e5de46fbd8cac82f06fc5e6b64f37e}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+clear@{queue\+\_\+clear}}
+\index{queue\+\_\+clear@{queue\+\_\+clear}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+clear()}{queue\_clear()}}
+{\footnotesize\ttfamily void queue\+\_\+clear (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+
+
+
+Sets all elements of queue\+\_\+matrix in an \hyperlink{structElevator}{Elevator} struct to zero. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 3 of file queue\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{queue__handler_8h_a7b8d1f4f4b11dc91a3ed06449feea23d}\label{queue__handler_8h_a7b8d1f4f4b11dc91a3ed06449feea23d}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+delete\+\_\+order@{queue\+\_\+delete\+\_\+order}}
+\index{queue\+\_\+delete\+\_\+order@{queue\+\_\+delete\+\_\+order}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+delete\+\_\+order()}{queue\_delete\_order()}}
+{\footnotesize\ttfamily void queue\+\_\+delete\+\_\+order (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev,  }\item[{\hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order}}]{order\+\_\+type,  }\item[{int}]{floor }\end{DoxyParamCaption})}
+
+
+
+Sets a value specified by {\ttfamily order\+\_\+type} and {\ttfamily floor} in the queue\+\_\+matrix in {\ttfamily p\+\_\+elev} to zero. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
+\hline
+\mbox{\tt in}  & {\em order\+\_\+type} & The order type specified \\
+\hline
+\mbox{\tt in}  & {\em floor} & The floor specified \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 25 of file queue\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{queue__handler_8h_a5690c565e767b1bcdebb9c9a77d519e8}\label{queue__handler_8h_a5690c565e767b1bcdebb9c9a77d519e8}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+get\+\_\+direction\+\_\+of\+\_\+order@{queue\+\_\+get\+\_\+direction\+\_\+of\+\_\+order}}
+\index{queue\+\_\+get\+\_\+direction\+\_\+of\+\_\+order@{queue\+\_\+get\+\_\+direction\+\_\+of\+\_\+order}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+get\+\_\+direction\+\_\+of\+\_\+order()}{queue\_get\_direction\_of\_order()}}
+{\footnotesize\ttfamily \hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order} queue\+\_\+get\+\_\+direction\+\_\+of\+\_\+order (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+
+
+
+Checks the order type of the order just handled. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p\+\_\+elev} & Pointer an \hyperlink{structElevator}{Elevator} struct\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Order type of the order which {\ttfamily p\+\_\+elev} just handled 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file queue\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{queue__handler_8h_af977d3c209c783b26fe5fd385a7799f3}\label{queue__handler_8h_af977d3c209c783b26fe5fd385a7799f3}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+get\+\_\+movement\+\_\+any\+\_\+direction@{queue\+\_\+get\+\_\+movement\+\_\+any\+\_\+direction}}
+\index{queue\+\_\+get\+\_\+movement\+\_\+any\+\_\+direction@{queue\+\_\+get\+\_\+movement\+\_\+any\+\_\+direction}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+get\+\_\+movement\+\_\+any\+\_\+direction()}{queue\_get\_movement\_any\_direction()}}
+{\footnotesize\ttfamily \hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement} queue\+\_\+get\+\_\+movement\+\_\+any\+\_\+direction (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+
+
+
+Checks for the direction for the elevator to move, independent of order priorities. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Direction for the elevator {\ttfamily p\+\_\+elev} to move without order priorities 
+\end{DoxyReturn}
+
+
+Definition at line 43 of file queue\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{queue__handler_8h_a730a369784a44157f19c48e850068255}\label{queue__handler_8h_a730a369784a44157f19c48e850068255}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+get\+\_\+movement\+\_\+direction@{queue\+\_\+get\+\_\+movement\+\_\+direction}}
+\index{queue\+\_\+get\+\_\+movement\+\_\+direction@{queue\+\_\+get\+\_\+movement\+\_\+direction}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+get\+\_\+movement\+\_\+direction()}{queue\_get\_movement\_direction()}}
+{\footnotesize\ttfamily \hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement} queue\+\_\+get\+\_\+movement\+\_\+direction (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+
+
+
+Checks for the direction for the elevator to move, with order priorities. If no priorities are found the function checks for directions for the elevator to move without order priorities. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Direction for {\ttfamily p\+\_\+elev} to move 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file queue\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{queue__handler_8h_a6a8f2e61bafeaadb36377a3664a681e3}\label{queue__handler_8h_a6a8f2e61bafeaadb36377a3664a681e3}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+get\+\_\+order@{queue\+\_\+get\+\_\+order}}
+\index{queue\+\_\+get\+\_\+order@{queue\+\_\+get\+\_\+order}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+get\+\_\+order()}{queue\_get\_order()}}
+{\footnotesize\ttfamily int queue\+\_\+get\+\_\+order (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev,  }\item[{\hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order}}]{order\+\_\+type,  }\item[{int}]{floor }\end{DoxyParamCaption})}
+
+
+
+Check a specified value in queue\+\_\+matrix in an \hyperlink{structElevator}{Elevator} struct. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
+\hline
+\mbox{\tt in}  & {\em order\+\_\+type} & The order type to check \\
+\hline
+\mbox{\tt in}  & {\em floor} & The floor to check\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there is an unhandled order at {\ttfamily floor} with {\ttfamily order\+\_\+type} in {\ttfamily p\+\_\+elev}, 0 otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 11 of file queue\+\_\+handler.\+c.
+
+\mbox{\Hypertarget{queue__handler_8h_a3ce896fe20074af270bcbb349562dfd9}\label{queue__handler_8h_a3ce896fe20074af270bcbb349562dfd9}} 
+\index{queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}!queue\+\_\+set\+\_\+orders@{queue\+\_\+set\+\_\+orders}}
+\index{queue\+\_\+set\+\_\+orders@{queue\+\_\+set\+\_\+orders}!queue\+\_\+handler.\+h@{queue\+\_\+handler.\+h}}
+\subsubsection{\texorpdfstring{queue\+\_\+set\+\_\+orders()}{queue\_set\_orders()}}
+{\footnotesize\ttfamily void queue\+\_\+set\+\_\+orders (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+
+
+
+Updates queue\+\_\+matrix in an \hyperlink{structElevator}{Elevator} struct with new orders. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 15 of file queue\+\_\+handler.\+c.
+

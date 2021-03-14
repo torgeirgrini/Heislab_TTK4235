@@ -1,0 +1,76 @@
+\hypertarget{structElevator}{}\section{Elevator Struct Reference}
+\label{structElevator}\index{Elevator@{Elevator}}
+
+
+An \hyperlink{structElevator}{Elevator} struct which holds a queue system, memory variables and control variables.  
+
+
+
+
+{\ttfamily \#include $<$elevator.\+h$>$}
+
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structElevator_ae9a4535426a6d35fed788c74685a3a1d}\label{structElevator_ae9a4535426a6d35fed788c74685a3a1d}} 
+int {\bfseries queue\+\_\+matrix} \mbox{[}E\+L\+E\+V\+A\+T\+O\+R\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+O\+R\+D\+E\+RS\mbox{]}\mbox{[}H\+A\+R\+D\+W\+A\+R\+E\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+F\+L\+O\+O\+RS\mbox{]}
+\item 
+\mbox{\Hypertarget{structElevator_aae297f56aca24d7be4518e2b14953015}\label{structElevator_aae297f56aca24d7be4518e2b14953015}} 
+int {\bfseries current\+\_\+floor}
+\item 
+\mbox{\Hypertarget{structElevator_a4872eeb2a2737ff0396fca606f8eaad8}\label{structElevator_a4872eeb2a2737ff0396fca606f8eaad8}} 
+int {\bfseries previous\+\_\+floor}
+\item 
+\mbox{\Hypertarget{structElevator_a787e17e94bf318d8757bbdf7ba0c7533}\label{structElevator_a787e17e94bf318d8757bbdf7ba0c7533}} 
+\hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement} {\bfseries current\+\_\+movement}
+\item 
+\mbox{\Hypertarget{structElevator_a4fb7d656caf15d55bdb47a603c43054e}\label{structElevator_a4fb7d656caf15d55bdb47a603c43054e}} 
+\hyperlink{hardware_8h_a2167c399a24df296afc432bcb88228af}{Hardware\+Movement} {\bfseries previous\+\_\+direction}
+\item 
+\mbox{\Hypertarget{structElevator_ae20f4287465b4f67528853bebd3d3896}\label{structElevator_ae20f4287465b4f67528853bebd3d3896}} 
+\hyperlink{hardware_8h_a796a8de8ce0ae769d7dbd3327a7bdbe7}{Hardware\+Order} {\bfseries order\+\_\+direction}
+\item 
+\mbox{\Hypertarget{structElevator_ad09af9fded96d746e098af616a052ade}\label{structElevator_ad09af9fded96d746e098af616a052ade}} 
+state {\bfseries current\+\_\+state}
+\item 
+\mbox{\Hypertarget{structElevator_a6f567852f3f96cc1a7d1fc15aa4c0ad8}\label{structElevator_a6f567852f3f96cc1a7d1fc15aa4c0ad8}} 
+int {\bfseries stop\+\_\+light\+\_\+set}
+\item 
+\mbox{\Hypertarget{structElevator_ab473c517dd118bdfd83928ec9afc9408}\label{structElevator_ab473c517dd118bdfd83928ec9afc9408}} 
+int {\bfseries timer\+\_\+set}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An \hyperlink{structElevator}{Elevator} struct which holds a queue system, memory variables and control variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em queue\+\_\+matrix} & A matrix that holds a value for every type of order at every floor for the elevator. The values are non-\/zero for an active order and zero for a none-\/active order \\
+\hline
+{\em current\+\_\+floor} & Holds the value for the current or last visited floor \\
+\hline
+{\em previous\+\_\+floor} & Holds the value for the previously visited floor \\
+\hline
+{\em current\+\_\+movement} & Holds the value for the current direction of the elevator \\
+\hline
+{\em previous\+\_\+direction} & Holds the value for the previous direction of the elevator \\
+\hline
+{\em order\+\_\+direction} & Holds the value for the order type of the last handled order \\
+\hline
+{\em current\+\_\+state} & Holds the current state for the elevator \\
+\hline
+{\em stop\+\_\+light\+\_\+set} & A truthy value for if the stop light is set \\
+\hline
+{\em timer\+\_\+set} & A truthy value for if the timer has been set \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 30 of file elevator.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+source/\hyperlink{elevator_8h}{elevator.\+h}\end{DoxyCompactItemize}

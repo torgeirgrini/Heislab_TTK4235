@@ -1,0 +1,11 @@
+<map id="source/hardware.h" name="source/hardware.h">
+<area shape="rect" id="node2" href="$utilities_8h.html" title="Useful functions. " alt="" coords="163,80,280,107"/>
+<area shape="rect" id="node3" href="$elevator_8h.html" title="Library for an Elevator struct, and for operations on an Elevator struct. " alt="" coords="88,155,211,181"/>
+<area shape="rect" id="node10" href="$utilities_8c_source.html" title="source/utilities.c" alt="" coords="235,155,352,181"/>
+<area shape="rect" id="node4" href="$elevator_8c_source.html" title="source/elevator.c" alt="" coords="5,229,128,256"/>
+<area shape="rect" id="node5" href="$queue__handler_8h.html" title="Library for doing operations with a queue matrix defined in an Elevator struct. " alt="" coords="152,229,312,256"/>
+<area shape="rect" id="node6" href="$stop__btn_8h.html" title="Library for stop button operations. " alt="" coords="85,304,211,331"/>
+<area shape="rect" id="node9" href="$queue__handler_8c_source.html" title="source/queue_handler.c" alt="" coords="236,304,396,331"/>
+<area shape="rect" id="node7" href="$main_8c_source.html" title="source/main.c" alt="" coords="27,379,131,405"/>
+<area shape="rect" id="node8" href="$stop__btn_8c_source.html" title="source/stop_btn.c" alt="" coords="155,379,282,405"/>
+</map>
