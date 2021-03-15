@@ -43,6 +43,14 @@ void queue_set_orders(Elevator *p_elev);
 void queue_delete_order(Elevator *p_elev, HardwareOrder order_type, int floor);
 
 /**
+ * @brief Sets all values at @p floor in the queue_matrix in @p p_elev to zero
+ * 
+ * @param[out] p_elev Pointer to an Elevator struct
+ * @param[in] floor The floor specified
+*/
+void queue_delete_orders_at_floor(Elevator *p_elev, int floor);
+
+/**
  * @brief Checks @p floor for any unhandled orders
  * 
  * @param[in] p_elev Pointer to an Elevator struct
