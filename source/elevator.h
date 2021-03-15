@@ -6,7 +6,6 @@
 #ifndef ELEVATOR_H
 #define ELEVATOR_H
 
-#include <stdlib.h>
 #include "utilities.h"
 #include "states.h"
 

@@ -1,4 +1,4 @@
-SIM := true
+SIM := false
 SOURCES := main.c timer.c utilities.c queue_handler.c elevator.c stop_btn.c
 
 SOURCE_DIR := source

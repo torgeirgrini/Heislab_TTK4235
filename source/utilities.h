@@ -13,11 +13,6 @@
 int read_all_floor_sensors();
 
 /**
- * @brief Clears all order lights
- */
-void clear_all_order_lights();
-
-/**
  * @brief Used for getting the opposite direction of @p direction
  * @param[in] direction Input direction
  * @return Opposite direction of @p direction

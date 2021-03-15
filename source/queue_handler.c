@@ -66,7 +66,7 @@ HardwareMovement queue_get_movement_pri_direction(Elevator *p_elev) {
     if(queue_active_orders_floor(p_elev, p_elev->current_floor)) {return HARDWARE_MOVEMENT_STOP;}
 
     switch (p_elev->order_direction){
-        case HARDWARE_MOVEMENT_UP:
+        case HARDWARE_ORDER_UP:
 
             start_floor_search = p_elev->current_floor+1;
             end_floor_search = HARDWARE_NUMBER_OF_FLOORS;
@@ -76,7 +76,7 @@ HardwareMovement queue_get_movement_pri_direction(Elevator *p_elev) {
             }
             break;
 
-        case HARDWARE_MOVEMENT_DOWN:
+        case HARDWARE_ORDER_DOWN:
 
             start_floor_search = p_elev->current_floor-1;
             end_floor_search = 0;
