@@ -18,13 +18,14 @@ int main(){
     Elevator *p_elevator = &elevator;
     elevator_init(p_elevator);
     elevator_startup_routine(p_elevator);
-    clear_all_order_lights();
 
     while(1) {
         
-        queue_set_orders(p_elevator);
-        elevator_set_order_light(p_elevator);
-        stop_btn_handler(p_elevator);
+        if(p_elevator->current_state != STOP_BTN_FLOOR && p_elevator->current_state != STOP_BTN_SHAFT) {
+            queue_set_orders(p_elevator);
+            elevator_set_order_light(p_elevator);
+            stop_btn_handler(p_elevator);  
+        }
 
         switch(p_elevator->current_state) {
 
@@ -56,7 +57,7 @@ int main(){
                     p_elevator->previous_direction = p_elevator->current_movement;
                     p_elevator->current_movement = HARDWARE_MOVEMENT_STOP;
                     p_elevator->order_direction = queue_get_direction_of_order(p_elevator);
-                    p_elevator->current_state = DOOR_OPEN; 
+                    p_elevator->current_state = DOOR_OPEN;
                 }
                 break;
 
@@ -66,6 +67,7 @@ int main(){
                 break;
 
             case TIMER:
+                queue_delete_orders_at_floor(p_elevator, p_elevator->current_floor);
                 if(!p_elevator->timer_set) {
                     timer_previous = timer_set();
                     p_elevator->timer_set = 1;
@@ -75,7 +77,6 @@ int main(){
                 }
                 if (timer_finished(timer_previous, 3000)) {
                     hardware_command_door_open(0);
-                    queue_delete_orders_at_floor(p_elevator, p_elevator->current_floor);
                     p_elevator->timer_set = 0;
                     p_elevator->current_state = IDLE_IN_FLOOR;
                 }
@@ -87,6 +88,7 @@ int main(){
                     p_elevator->stop_light_set = 1;
                 }
                 queue_clear(p_elevator);
+                elevator_set_order_light(p_elevator);
                 if(!hardware_read_stop_signal()) {
                     hardware_command_stop_light(0);
                     p_elevator->stop_light_set = 0;
@@ -101,6 +103,7 @@ int main(){
                     hardware_command_door_open(1);
                 }
                 queue_clear(p_elevator);
+                elevator_set_order_light(p_elevator);
                 if(!hardware_read_stop_signal()) {
                     hardware_command_stop_light(0);
                     p_elevator->stop_light_set = 0;
