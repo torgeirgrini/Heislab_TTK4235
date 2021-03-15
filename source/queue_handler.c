@@ -26,6 +26,12 @@ void queue_delete_order(Elevator *p_elev, HardwareOrder order_type, int floor) {
     p_elev->queue_matrix[order_type][floor] = 0;
 }
 
+void queue_delete_orders_at_floor(Elevator *p_elev, int floor){
+    for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
+        queue_delete_order(p_elev, i, floor);
+    }
+}
+
 int queue_active_orders_floor(Elevator *p_elev, int floor) {
     for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
         if(queue_get_order(p_elev, i, floor)) {return 1;}
@@ -41,21 +47,18 @@ int queue_active_orders_all_floors(Elevator *p_elev) {
 }
 
 HardwareMovement queue_get_movement_any_direction(Elevator *p_elev) {
-    for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
-        for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
-            if (p_elev->queue_matrix[i][j]) {
-                if (j > p_elev->current_floor) {
-                    return HARDWARE_MOVEMENT_UP;
-                }
-                else if (j < p_elev->current_floor) {
-                    return HARDWARE_MOVEMENT_DOWN;
-                }
+    for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
+        if(queue_active_orders_floor(p_elev, j)) {
+            if (j > p_elev->current_floor) {
+                return HARDWARE_MOVEMENT_UP;
+            }
+            else if (j < p_elev->current_floor) {
+                return HARDWARE_MOVEMENT_DOWN;
             }
         }
     }
     return HARDWARE_MOVEMENT_STOP;
 }
-
 
 HardwareMovement queue_get_movement_pri_direction(Elevator *p_elev) {
     int start_floor_search = 0;
@@ -63,26 +66,26 @@ HardwareMovement queue_get_movement_pri_direction(Elevator *p_elev) {
     if(queue_active_orders_floor(p_elev, p_elev->current_floor)) {return HARDWARE_MOVEMENT_STOP;}
 
     switch (p_elev->order_direction){
-    case HARDWARE_MOVEMENT_UP:
+        case HARDWARE_MOVEMENT_UP:
 
-        start_floor_search = p_elev->current_floor+1;
-        end_floor_search = HARDWARE_NUMBER_OF_FLOORS;
-        if(p_elev->current_floor == HARDWARE_NUMBER_OF_FLOORS-1) {return HARDWARE_MOVEMENT_DOWN;}
-        for(int j = start_floor_search; j < end_floor_search; j++) {
-            if (p_elev->queue_matrix[HARDWARE_ORDER_UP][j] || p_elev->queue_matrix[HARDWARE_ORDER_INSIDE][j]) {return HARDWARE_MOVEMENT_UP;}
-        }
-        break;
-    
-    case HARDWARE_MOVEMENT_DOWN:
+            start_floor_search = p_elev->current_floor+1;
+            end_floor_search = HARDWARE_NUMBER_OF_FLOORS;
+            if(p_elev->current_floor == HARDWARE_NUMBER_OF_FLOORS-1) {return HARDWARE_MOVEMENT_DOWN;}
+            for(int j = start_floor_search; j < end_floor_search; j++) {
+                if (p_elev->queue_matrix[HARDWARE_ORDER_UP][j] || p_elev->queue_matrix[HARDWARE_ORDER_INSIDE][j]) {return HARDWARE_MOVEMENT_UP;}
+            }
+            break;
 
-        start_floor_search = p_elev->current_floor-1;
-        end_floor_search = 0;
-        if(p_elev->current_floor == 0) {return HARDWARE_MOVEMENT_UP;}
-        for(int j = start_floor_search; j == end_floor_search; j--) {
-            if (p_elev->queue_matrix[HARDWARE_ORDER_DOWN][j] || p_elev->queue_matrix[HARDWARE_ORDER_INSIDE][j]) {return HARDWARE_MOVEMENT_DOWN;}
+        case HARDWARE_MOVEMENT_DOWN:
+
+            start_floor_search = p_elev->current_floor-1;
+            end_floor_search = 0;
+            if(p_elev->current_floor == 0) {return HARDWARE_MOVEMENT_UP;}
+            for(int j = start_floor_search; j == end_floor_search; j--) {
+                if (p_elev->queue_matrix[HARDWARE_ORDER_DOWN][j] || p_elev->queue_matrix[HARDWARE_ORDER_INSIDE][j]) {return HARDWARE_MOVEMENT_DOWN;}
+            }
+            break;
         }
-        break;
-    }
     return queue_get_movement_any_direction(p_elev);
 }
 

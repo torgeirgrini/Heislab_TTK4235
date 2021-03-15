@@ -22,10 +22,16 @@ int main(){
 
     while(1) {
         
+        /*
+        if(p_elevator->current_state != STOP_BTN_FLOOR && p_elevator->current_state != STOP_BTN_SHAFT) {
+            queue_set_orders(p_elevator);
+            elevator_order_light_on(p_elevator);
+            stop_btn_handler(p_elevator);            
+        }*/
         queue_set_orders(p_elevator);
         elevator_order_light_on(p_elevator);
         stop_btn_handler(p_elevator);
-        
+
         switch(p_elevator->current_state) {
 
             case IDLE_IN_FLOOR:
@@ -75,9 +81,7 @@ int main(){
                 }
                 if (timer_finished(timer_previous, 3000)) {
                     hardware_command_door_open(0);
-                    for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
-                        queue_delete_order(p_elevator, i, p_elevator->current_floor);
-                    }
+                    queue_delete_orders_at_floor(p_elevator, p_elevator->current_floor);
                     p_elevator->timer_set = 0;
                     p_elevator->current_state = IDLE_IN_FLOOR;
                 }
