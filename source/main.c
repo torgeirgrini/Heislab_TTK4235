@@ -22,12 +22,6 @@ int main(){
 
     while(1) {
         
-        /*
-        if(p_elevator->current_state != STOP_BTN_FLOOR && p_elevator->current_state != STOP_BTN_SHAFT) {
-            queue_set_orders(p_elevator);
-            elevator_order_light_on(p_elevator);
-            stop_btn_handler(p_elevator);            
-        }*/
         queue_set_orders(p_elevator);
         elevator_order_light_on(p_elevator);
         stop_btn_handler(p_elevator);
