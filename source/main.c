@@ -23,7 +23,7 @@ int main(){
     while(1) {
         
         queue_set_orders(p_elevator);
-        elevator_order_light_on(p_elevator);
+        elevator_set_order_light(p_elevator);
         stop_btn_handler(p_elevator);
 
         switch(p_elevator->current_state) {

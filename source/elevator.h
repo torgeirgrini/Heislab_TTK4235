@@ -61,11 +61,11 @@ void elevator_init(Elevator *p_elev);
 void elevator_startup_routine(Elevator *p_elev);
 
 /**
- * @brief Sets the order lights for the order types and floors, in which @p p_elev has active orders
+ * @brief Sets the order lights for the order types and floors
  * 
  * @param[in] p_elev Pointer to an Elevator struct
  */
-void elevator_order_light_on(Elevator *p_elev);
+void elevator_set_order_light(Elevator *p_elev);
 
 /**
  * @brief Updates current_floor and previous_floor in @p p_elev and sets the floor indicator
