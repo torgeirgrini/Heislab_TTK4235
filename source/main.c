@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
+#include "elevator.h"
 #include "timer.h"
 #include "stop_btn.h"
 
@@ -24,7 +25,7 @@ int main(){
         if(p_elevator->current_state != STOP_BTN_FLOOR && p_elevator->current_state != STOP_BTN_SHAFT) {
             queue_set_orders(p_elevator);
             elevator_set_order_light(p_elevator);
-            stop_btn_handler(p_elevator);  
+            stop_btn_detector(p_elevator);  
         }
 
         switch(p_elevator->current_state) {

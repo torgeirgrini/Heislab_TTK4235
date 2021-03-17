@@ -1,7 +1,7 @@
 #include "stop_btn.h"
 
 
-void stop_btn_handler(Elevator *p_elev) {
+void stop_btn_detector(Elevator *p_elev) {
     if(hardware_read_stop_signal() && (read_all_floor_sensors() != -1)) {
         hardware_command_movement(HARDWARE_MOVEMENT_STOP);
         p_elev->current_state = STOP_BTN_FLOOR;
