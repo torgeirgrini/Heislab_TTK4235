@@ -69,12 +69,9 @@ int main(){
 
             case TIMER:
                 queue_delete_orders_at_floor(p_elevator, p_elevator->current_floor);
-                if(!p_elevator->timer_set) {
+                if(!p_elevator->timer_set || hardware_read_obstruction_signal()) {
                     timer_previous = timer_set();
                     p_elevator->timer_set = 1;
-                }
-                if(hardware_read_obstruction_signal()) {
-                    timer_previous = timer_set();
                 }
                 if (timer_finished(timer_previous, 3000)) {
                     hardware_command_door_open(0);
