@@ -126,3 +126,13 @@ int queue_check_orders_current_floor(Elevator* p_elev) {
     || queue_get_order(p_elev, p_elev->current_movement, p_elev->current_floor)
     || !queue_active_orders_in_direction(p_elev, p_elev->current_movement));
 }
+
+
+void queue_adjust_floor(Elevator *p_elev) {
+    if(!queue_active_orders_in_direction(p_elev, p_elev->previous_direction) && (p_elev->previous_direction == HARDWARE_MOVEMENT_DOWN)) {
+        p_elev->current_floor--;
+    }
+    else if(!queue_active_orders_in_direction(p_elev, p_elev->previous_direction) && (p_elev->previous_direction == HARDWARE_MOVEMENT_UP)) {
+        p_elev->current_floor++;
+    } 
+}
