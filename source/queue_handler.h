@@ -16,7 +16,7 @@
 void queue_clear(Elevator *p_elev);
 
 /**
- * @brief Check a specified value in queue_matrix in an Elevator struct
+ * @brief Checks a specified value in queue_matrix in an Elevator struct
  * 
  * @param[in] p_elev Pointer to an Elevator struct
  * @param[in] order_type The order type to check
@@ -34,7 +34,7 @@ int queue_get_order(Elevator *p_elev, HardwareOrder order_type, int floor);
 void queue_set_orders(Elevator *p_elev);
 
 /**
- * @brief Sets a value specified by @p order_type and @p floor in the queue_matrix in @p p_elev to zero
+ * @brief Sets the value in the queue_matrix in @p p_elev given by @p order_type and @p floor to zero
  
  * @param[out] p_elev Pointer to an Elevator struct
  * @param[in] order_type The order type specified
