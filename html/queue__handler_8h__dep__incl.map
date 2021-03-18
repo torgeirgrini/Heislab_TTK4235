@@ -1,6 +1,4 @@
 <map id="source/queue_handler.h" name="source/queue_handler.h">
-<area shape="rect" id="node2" href="$stop__btn_8h.html" title="Library for stop button operations. " alt="" coords="63,80,190,107"/>
-<area shape="rect" id="node5" href="$queue__handler_8c_source.html" title="source/queue_handler.c" alt="" coords="215,80,375,107"/>
-<area shape="rect" id="node3" href="$main_8c_source.html" title="source/main.c" alt="" coords="5,155,109,181"/>
-<area shape="rect" id="node4" href="$stop__btn_8c_source.html" title="source/stop_btn.c" alt="" coords="134,155,261,181"/>
+<area shape="rect" id="node2" href="$main_8c_source.html" title="source/main.c" alt="" coords="5,80,109,107"/>
+<area shape="rect" id="node3" href="$queue__handler_8c_source.html" title="source/queue_handler.c" alt="" coords="133,80,293,107"/>
 </map>

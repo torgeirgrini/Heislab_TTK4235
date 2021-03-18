@@ -1,10 +1,8 @@
 <map id="source/utilities.h" name="source/utilities.h">
-<area shape="rect" id="node2" href="$elevator_8h.html" title="Library for an Elevator struct, and for operations on an Elevator struct. " alt="" coords="88,80,211,107"/>
-<area shape="rect" id="node9" href="$utilities_8c_source.html" title="source/utilities.c" alt="" coords="235,80,352,107"/>
+<area shape="rect" id="node2" href="$elevator_8h.html" title="Library for an Elevator struct, and for operations on an Elevator struct. " alt="" coords="104,80,227,107"/>
+<area shape="rect" id="node7" href="$utilities_8c_source.html" title="source/utilities.c" alt="" coords="251,80,368,107"/>
 <area shape="rect" id="node3" href="$elevator_8c_source.html" title="source/elevator.c" alt="" coords="5,155,128,181"/>
-<area shape="rect" id="node4" href="$queue__handler_8h.html" title="Library for doing operations with a queue matrix defined in an Elevator struct. " alt="" coords="152,155,312,181"/>
-<area shape="rect" id="node5" href="$stop__btn_8h.html" title="Library for stop button operations. " alt="" coords="85,229,211,256"/>
-<area shape="rect" id="node8" href="$queue__handler_8c_source.html" title="source/queue_handler.c" alt="" coords="236,229,396,256"/>
-<area shape="rect" id="node6" href="$main_8c_source.html" title="source/main.c" alt="" coords="27,304,131,331"/>
-<area shape="rect" id="node7" href="$stop__btn_8c_source.html" title="source/stop_btn.c" alt="" coords="155,304,282,331"/>
+<area shape="rect" id="node4" href="$main_8c_source.html" title="source/main.c" alt="" coords="113,229,217,256"/>
+<area shape="rect" id="node5" href="$queue__handler_8h.html" title="Library for doing operations with a queue matrix defined in an Elevator struct. " alt="" coords="203,155,363,181"/>
+<area shape="rect" id="node6" href="$queue__handler_8c_source.html" title="source/queue_handler.c" alt="" coords="241,229,401,256"/>
 </map>

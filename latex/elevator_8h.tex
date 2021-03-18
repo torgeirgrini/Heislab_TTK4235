@@ -1,61 +1,74 @@
-\hypertarget{elevator_8h}{}\doxysection{source/elevator.h File Reference}
-\label{elevator_8h}\index{source/elevator.h@{source/elevator.h}}
+\hypertarget{elevator_8h}{}\section{source/elevator.h File Reference}
+\label{elevator_8h}\index{source/elevator.\+h@{source/elevator.\+h}}
 
 
-Library for an \mbox{\hyperlink{structElevator}{Elevator}} struct, and for operations on an \mbox{\hyperlink{structElevator}{Elevator}} struct.  
+Library for an \hyperlink{structElevator}{Elevator} struct, and for operations on an \hyperlink{structElevator}{Elevator} struct.  
 
 
-{\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}utilities.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}states.\+h\char`\"{}}\newline
 Include dependency graph for elevator.\+h\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{elevator_8h__incl}
+\end{center}
+\end{figure}
 This graph shows which files directly or indirectly include this file\+:
-% FIG 1
-\doxysubsection*{Data Structures}
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{elevator_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{structElevator}{Elevator}}
-\begin{DoxyCompactList}\small\item\em An \mbox{\hyperlink{structElevator}{Elevator}} struct which holds a queue system, memory variables and control variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Macros}
+struct \hyperlink{structElevator}{Elevator}
+\begin{DoxyCompactList}\small\item\em An \hyperlink{structElevator}{Elevator} struct which holds a queue system, memory variables and control variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\Hypertarget{elevator_8h_a5e9d3519138a42b79c6f8002347b7d88}\label{elevator_8h_a5e9d3519138a42b79c6f8002347b7d88}} 
-\#define {\bfseries ELEVATOR\+\_\+\+NUMBER\+\_\+\+OF\+\_\+\+ORDERS}~3
+\#define {\bfseries E\+L\+E\+V\+A\+T\+O\+R\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+\+O\+F\+\_\+\+O\+R\+D\+E\+RS}~3
 \end{DoxyCompactItemize}
-\doxysubsection*{Typedefs}
+\subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-typedef struct \mbox{\hyperlink{structElevator}{Elevator}} \mbox{\hyperlink{elevator_8h_a9b4fd374e3626fffe1540f991c00f5c0}{Elevator}}
-\begin{DoxyCompactList}\small\item\em An \mbox{\hyperlink{structElevator}{Elevator}} struct which holds a queue system, memory variables and control variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Functions}
+typedef struct \hyperlink{structElevator}{Elevator} \hyperlink{elevator_8h_a05b0ff2a7bd8a4106457415054c8599d}{Elevator}
+\begin{DoxyCompactList}\small\item\em An \hyperlink{structElevator}{Elevator} struct which holds a queue system, memory variables and control variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{elevator_8h_ad30b17a212bc32d6b2a9081c3ead4a3d}{elevator\+\_\+init}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$p\+\_\+elev)
-\begin{DoxyCompactList}\small\item\em Initialises the elements of {\ttfamily p\+\_\+elev} and sets queue\+\_\+matrix to a zero matrix. Sets current\+\_\+state to INIT. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{elevator_8h_a7ab778bfdf149cd6f06b83c5102bbc79}{elevator\+\_\+startup\+\_\+routine}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$p\+\_\+elev)
-\begin{DoxyCompactList}\small\item\em Moves the elevator to a defined state and sets current\+\_\+movement, current\+\_\+direction and previous\+\_\+direction in {\ttfamily p\+\_\+elev}. Sets current\+\_\+state to IDLE\+\_\+\+IN\+\_\+\+FLOOR upon success. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{elevator_8h_a006e863b777755b9d2ec96a78e620b28}{elevator\+\_\+order\+\_\+light\+\_\+on}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$p\+\_\+elev)
-\begin{DoxyCompactList}\small\item\em Sets the order lights for the order types and floors, in which {\ttfamily p\+\_\+elev} has active orders. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{elevator_8h_a9b5f259e84b6ffed37e9c01709187c90}{elevator\+\_\+update\+\_\+floor}} (\mbox{\hyperlink{structElevator}{Elevator}} $\ast$p\+\_\+elev)
-\begin{DoxyCompactList}\small\item\em Updates current\+\_\+floor and previous\+\_\+floor in {\ttfamily p\+\_\+elev} and sets the floor indicator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{elevator_8h_ad30b17a212bc32d6b2a9081c3ead4a3d}{elevator\+\_\+init} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Initialises the elements of {\ttfamily p\+\_\+elev} and sets queue\+\_\+matrix to a zero matrix. Sets current\+\_\+state to I\+N\+IT. \end{DoxyCompactList}\item 
+void \hyperlink{elevator_8h_a7ab778bfdf149cd6f06b83c5102bbc79}{elevator\+\_\+startup\+\_\+routine} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Moves the elevator to a defined state and sets current\+\_\+movement, current\+\_\+direction and previous\+\_\+direction in {\ttfamily p\+\_\+elev}. Sets current\+\_\+state to I\+D\+L\+E\+\_\+\+I\+N\+\_\+\+F\+L\+O\+OR upon success. \end{DoxyCompactList}\item 
+void \hyperlink{elevator_8h_a98984db5170ccad2e385cbbe47bcf190}{elevator\+\_\+set\+\_\+order\+\_\+light} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Sets the order lights for the order types and floors. \end{DoxyCompactList}\item 
+void \hyperlink{elevator_8h_a9b5f259e84b6ffed37e9c01709187c90}{elevator\+\_\+update\+\_\+floor} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Updates current\+\_\+floor and previous\+\_\+floor in {\ttfamily p\+\_\+elev} and sets the floor indicator. \end{DoxyCompactList}\item 
+void \hyperlink{elevator_8h_a48f2907126394ce5d52efd5e4c425773}{elevator\+\_\+emergency\+\_\+detector} (\hyperlink{structElevator}{Elevator} $\ast$p\+\_\+elev)
+\begin{DoxyCompactList}\small\item\em Detects if the stop button is pressed, and decides the behavior of the elevator if it is. If a floor sensor is activated the state of the elevator is to be set to S\+T\+O\+P\+\_\+\+B\+T\+N\+\_\+\+F\+L\+O\+OR. Otherwise the state of the elevator is to be set to S\+T\+O\+P\+\_\+\+B\+T\+N\+\_\+\+S\+H\+A\+FT. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\doxysubsection{Detailed Description}
-Library for an \mbox{\hyperlink{structElevator}{Elevator}} struct, and for operations on an \mbox{\hyperlink{structElevator}{Elevator}} struct. 
-
-
-
-\doxysubsection{Typedef Documentation}
-\mbox{\Hypertarget{elevator_8h_a9b4fd374e3626fffe1540f991c00f5c0}\label{elevator_8h_a9b4fd374e3626fffe1540f991c00f5c0}} 
-\index{elevator.h@{elevator.h}!Elevator@{Elevator}}
-\index{Elevator@{Elevator}!elevator.h@{elevator.h}}
-\doxysubsubsection{\texorpdfstring{Elevator}{Elevator}}
-{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structElevator}{Elevator}} \mbox{\hyperlink{structElevator}{Elevator}}}
+\subsection{Detailed Description}
+Library for an \hyperlink{structElevator}{Elevator} struct, and for operations on an \hyperlink{structElevator}{Elevator} struct. 
 
 
 
-An \mbox{\hyperlink{structElevator}{Elevator}} struct which holds a queue system, memory variables and control variables. 
+\subsection{Typedef Documentation}
+\mbox{\Hypertarget{elevator_8h_a05b0ff2a7bd8a4106457415054c8599d}\label{elevator_8h_a05b0ff2a7bd8a4106457415054c8599d}} 
+\index{elevator.\+h@{elevator.\+h}!Elevator@{Elevator}}
+\index{Elevator@{Elevator}!elevator.\+h@{elevator.\+h}}
+\subsubsection{\texorpdfstring{Elevator}{Elevator}}
+{\footnotesize\ttfamily typedef struct \hyperlink{structElevator}{Elevator}  \hyperlink{structElevator}{Elevator}}
+
+
+
+An \hyperlink{structElevator}{Elevator} struct which holds a queue system, memory variables and control variables. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -80,39 +93,58 @@ An \mbox{\hyperlink{structElevator}{Elevator}} struct which holds a queue system
 \end{DoxyParams}
 
 
-\doxysubsection{Function Documentation}
-\mbox{\Hypertarget{elevator_8h_ad30b17a212bc32d6b2a9081c3ead4a3d}\label{elevator_8h_ad30b17a212bc32d6b2a9081c3ead4a3d}} 
-\index{elevator.h@{elevator.h}!elevator\_init@{elevator\_init}}
-\index{elevator\_init@{elevator\_init}!elevator.h@{elevator.h}}
-\doxysubsubsection{\texorpdfstring{elevator\_init()}{elevator\_init()}}
-{\footnotesize\ttfamily void elevator\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+\subsection{Function Documentation}
+\mbox{\Hypertarget{elevator_8h_a48f2907126394ce5d52efd5e4c425773}\label{elevator_8h_a48f2907126394ce5d52efd5e4c425773}} 
+\index{elevator.\+h@{elevator.\+h}!elevator\+\_\+emergency\+\_\+detector@{elevator\+\_\+emergency\+\_\+detector}}
+\index{elevator\+\_\+emergency\+\_\+detector@{elevator\+\_\+emergency\+\_\+detector}!elevator.\+h@{elevator.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+emergency\+\_\+detector()}{elevator\_emergency\_detector()}}
+{\footnotesize\ttfamily void elevator\+\_\+emergency\+\_\+detector (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
 
 
 
-Initialises the elements of {\ttfamily p\+\_\+elev} and sets queue\+\_\+matrix to a zero matrix. Sets current\+\_\+state to INIT. 
+Detects if the stop button is pressed, and decides the behavior of the elevator if it is. If a floor sensor is activated the state of the elevator is to be set to S\+T\+O\+P\+\_\+\+B\+T\+N\+\_\+\+F\+L\+O\+OR. Otherwise the state of the elevator is to be set to S\+T\+O\+P\+\_\+\+B\+T\+N\+\_\+\+S\+H\+A\+FT. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em p\+\_\+elev} & Pointer to an \mbox{\hyperlink{structElevator}{Elevator}} struct \\
+\mbox{\tt in,out}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 49 of file elevator.\+c.
+
+\mbox{\Hypertarget{elevator_8h_ad30b17a212bc32d6b2a9081c3ead4a3d}\label{elevator_8h_ad30b17a212bc32d6b2a9081c3ead4a3d}} 
+\index{elevator.\+h@{elevator.\+h}!elevator\+\_\+init@{elevator\+\_\+init}}
+\index{elevator\+\_\+init@{elevator\+\_\+init}!elevator.\+h@{elevator.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+init()}{elevator\_init()}}
+{\footnotesize\ttfamily void elevator\+\_\+init (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+
+
+
+Initialises the elements of {\ttfamily p\+\_\+elev} and sets queue\+\_\+matrix to a zero matrix. Sets current\+\_\+state to I\+N\+IT. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt out}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
 \hline
 \end{DoxyParams}
 
 
 Definition at line 3 of file elevator.\+c.
 
-\mbox{\Hypertarget{elevator_8h_a006e863b777755b9d2ec96a78e620b28}\label{elevator_8h_a006e863b777755b9d2ec96a78e620b28}} 
-\index{elevator.h@{elevator.h}!elevator\_order\_light\_on@{elevator\_order\_light\_on}}
-\index{elevator\_order\_light\_on@{elevator\_order\_light\_on}!elevator.h@{elevator.h}}
-\doxysubsubsection{\texorpdfstring{elevator\_order\_light\_on()}{elevator\_order\_light\_on()}}
-{\footnotesize\ttfamily void elevator\+\_\+order\+\_\+light\+\_\+on (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{elevator_8h_a98984db5170ccad2e385cbbe47bcf190}\label{elevator_8h_a98984db5170ccad2e385cbbe47bcf190}} 
+\index{elevator.\+h@{elevator.\+h}!elevator\+\_\+set\+\_\+order\+\_\+light@{elevator\+\_\+set\+\_\+order\+\_\+light}}
+\index{elevator\+\_\+set\+\_\+order\+\_\+light@{elevator\+\_\+set\+\_\+order\+\_\+light}!elevator.\+h@{elevator.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+set\+\_\+order\+\_\+light()}{elevator\_set\_order\_light()}}
+{\footnotesize\ttfamily void elevator\+\_\+set\+\_\+order\+\_\+light (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
 
 
 
-Sets the order lights for the order types and floors, in which {\ttfamily p\+\_\+elev} has active orders. 
+Sets the order lights for the order types and floors. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in}}  & {\em p\+\_\+elev} & Pointer to an \mbox{\hyperlink{structElevator}{Elevator}} struct \\
+\mbox{\tt in}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
 \hline
 \end{DoxyParams}
 
@@ -120,18 +152,18 @@ Sets the order lights for the order types and floors, in which {\ttfamily p\+\_\
 Definition at line 32 of file elevator.\+c.
 
 \mbox{\Hypertarget{elevator_8h_a7ab778bfdf149cd6f06b83c5102bbc79}\label{elevator_8h_a7ab778bfdf149cd6f06b83c5102bbc79}} 
-\index{elevator.h@{elevator.h}!elevator\_startup\_routine@{elevator\_startup\_routine}}
-\index{elevator\_startup\_routine@{elevator\_startup\_routine}!elevator.h@{elevator.h}}
-\doxysubsubsection{\texorpdfstring{elevator\_startup\_routine()}{elevator\_startup\_routine()}}
-{\footnotesize\ttfamily void elevator\+\_\+startup\+\_\+routine (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+\index{elevator.\+h@{elevator.\+h}!elevator\+\_\+startup\+\_\+routine@{elevator\+\_\+startup\+\_\+routine}}
+\index{elevator\+\_\+startup\+\_\+routine@{elevator\+\_\+startup\+\_\+routine}!elevator.\+h@{elevator.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+startup\+\_\+routine()}{elevator\_startup\_routine()}}
+{\footnotesize\ttfamily void elevator\+\_\+startup\+\_\+routine (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
 
 
 
-Moves the elevator to a defined state and sets current\+\_\+movement, current\+\_\+direction and previous\+\_\+direction in {\ttfamily p\+\_\+elev}. Sets current\+\_\+state to IDLE\+\_\+\+IN\+\_\+\+FLOOR upon success. 
+Moves the elevator to a defined state and sets current\+\_\+movement, current\+\_\+direction and previous\+\_\+direction in {\ttfamily p\+\_\+elev}. Sets current\+\_\+state to I\+D\+L\+E\+\_\+\+I\+N\+\_\+\+F\+L\+O\+OR upon success. 
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ out}}  & {\em p\+\_\+elev} & Pointer to an \mbox{\hyperlink{structElevator}{Elevator}} struct \\
+\mbox{\tt out}  & {\em p\+\_\+elev} & Pointer to an \hyperlink{structElevator}{Elevator} struct \\
 \hline
 \end{DoxyParams}
 
@@ -139,10 +171,10 @@ Moves the elevator to a defined state and sets current\+\_\+movement, current\+\
 Definition at line 20 of file elevator.\+c.
 
 \mbox{\Hypertarget{elevator_8h_a9b5f259e84b6ffed37e9c01709187c90}\label{elevator_8h_a9b5f259e84b6ffed37e9c01709187c90}} 
-\index{elevator.h@{elevator.h}!elevator\_update\_floor@{elevator\_update\_floor}}
-\index{elevator\_update\_floor@{elevator\_update\_floor}!elevator.h@{elevator.h}}
-\doxysubsubsection{\texorpdfstring{elevator\_update\_floor()}{elevator\_update\_floor()}}
-{\footnotesize\ttfamily void elevator\+\_\+update\+\_\+floor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structElevator}{Elevator}} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
+\index{elevator.\+h@{elevator.\+h}!elevator\+\_\+update\+\_\+floor@{elevator\+\_\+update\+\_\+floor}}
+\index{elevator\+\_\+update\+\_\+floor@{elevator\+\_\+update\+\_\+floor}!elevator.\+h@{elevator.\+h}}
+\subsubsection{\texorpdfstring{elevator\+\_\+update\+\_\+floor()}{elevator\_update\_floor()}}
+{\footnotesize\ttfamily void elevator\+\_\+update\+\_\+floor (\begin{DoxyParamCaption}\item[{\hyperlink{structElevator}{Elevator} $\ast$}]{p\+\_\+elev }\end{DoxyParamCaption})}
 
 
 
@@ -150,7 +182,7 @@ Updates current\+\_\+floor and previous\+\_\+floor in {\ttfamily p\+\_\+elev} an
 
 
 \begin{DoxyParams}[1]{Parameters}
-\mbox{\texttt{ in,out}}  & {\em p\+\_\+elev} & \\
+\mbox{\tt in,out}  & {\em p\+\_\+elev} & \\
 \hline
 \end{DoxyParams}
 
