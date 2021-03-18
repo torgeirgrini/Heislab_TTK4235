@@ -116,4 +116,13 @@ int queue_active_orders_in_direction(Elevator *p_elev, HardwareMovement directio
  */
 int queue_check_orders_current_floor(Elevator* p_elev);
 
+/**
+ * @brief Workaround for issue with movement after the stop button is released when in shaft. 
+ * If there are no orders in the last direction and last direction is downwards, the current floor is decremented.
+ * If there are no orders in the last direction and last direction is upwards, the current floor is incremented.
+ * @param p_elev Pointer to an Elevator struct
+ */
+
+void queue_adjust_floor(Elevator *p_elev);
+
 #endif

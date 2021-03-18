@@ -90,11 +90,13 @@ HardwareMovement queue_get_movement_pri_direction(Elevator *p_elev) {
 }
 
 HardwareOrder queue_get_direction_of_order(Elevator *p_elev) {
-
-    if(queue_get_order(p_elev, p_elev->previous_direction, p_elev->current_floor)) {return p_elev->previous_direction;}
-    else if(queue_get_order(p_elev, opposite_direction(p_elev->previous_direction), p_elev->current_floor)) {return opposite_direction(p_elev->previous_direction);}
-
-    return HARDWARE_MOVEMENT_STOP;
+    if(queue_get_order(p_elev, p_elev->previous_direction, p_elev->current_floor)) {
+        return (HardwareOrder) p_elev->previous_direction;
+    }
+    else if(queue_get_order(p_elev, opposite_direction(p_elev->previous_direction), p_elev->current_floor)) {
+        return (HardwareOrder) opposite_direction(p_elev->previous_direction);
+    }
+    return HARDWARE_ORDER_INSIDE;
 }
 
 int queue_active_orders_in_direction(Elevator *p_elev, HardwareMovement direction_type) {
@@ -123,4 +125,14 @@ int queue_check_orders_current_floor(Elevator* p_elev) {
     return (queue_get_order(p_elev, HARDWARE_ORDER_INSIDE, p_elev->current_floor)
     || queue_get_order(p_elev, p_elev->current_movement, p_elev->current_floor)
     || !queue_active_orders_in_direction(p_elev, p_elev->current_movement));
+}
+
+
+void queue_adjust_floor(Elevator *p_elev) {
+    if(!queue_active_orders_in_direction(p_elev, p_elev->previous_direction) && (p_elev->previous_direction == HARDWARE_MOVEMENT_DOWN)) {
+        p_elev->current_floor--;
+    }
+    else if(!queue_active_orders_in_direction(p_elev, p_elev->previous_direction) && (p_elev->previous_direction == HARDWARE_MOVEMENT_UP)) {
+        p_elev->current_floor++;
+    } 
 }
