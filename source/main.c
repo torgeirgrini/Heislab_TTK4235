@@ -3,7 +3,7 @@
 #include <signal.h>
 #include "elevator.h"
 #include "timer.h"
-#include "stop_btn.h"
+#include "queue_handler.h"
 
 
 int main(){
@@ -25,7 +25,7 @@ int main(){
         if(p_elevator->current_state != STOP_BTN_FLOOR && p_elevator->current_state != STOP_BTN_SHAFT) {
             queue_set_orders(p_elevator);
             elevator_set_order_light(p_elevator);
-            stop_btn_detector(p_elevator);  
+            elevator_emergency_detector(p_elevator);  
         }
 
         switch(p_elevator->current_state) {
@@ -43,7 +43,7 @@ int main(){
                 
             case IDLE_IN_SHAFT:
                 if(queue_active_orders_all_floors(p_elevator)) {
-                    stop_btn_adjust_floor(p_elevator);
+                    queue_adjust_floor(p_elevator);
                     p_elevator->current_movement = queue_get_movement_pri_direction(p_elevator);
                     p_elevator->current_state = MOVEMENT;
                 }
