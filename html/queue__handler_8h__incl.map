@@ -1,6 +1,0 @@
-<map id="source/queue_handler.h" name="source/queue_handler.h">
-<area shape="rect" id="node2" href="$elevator_8h.html" title="Library for an Elevator struct, and for operations on an Elevator struct. " alt="" coords="57,80,136,107"/>
-<area shape="rect" id="node3" href="$utilities_8h.html" title="Useful functions. " alt="" coords="11,155,86,181"/>
-<area shape="rect" id="node5" href="$states_8h.html" title="Enum containing the states of the elevator. " alt="" coords="110,155,179,181"/>
-<area shape="rect" id="node4" href="$hardware_8h.html" title="Driver for the elevator hardware. " alt="" coords="5,229,92,256"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="source/stop_btn.h" name="source/stop_btn.h">
-<area shape="rect" id="node2" href="$queue__handler_8h.html" title="Library for doing operations with a queue matrix defined in an Elevator struct. " alt="" coords="72,80,189,107"/>
-<area shape="rect" id="node3" href="$elevator_8h.html" title="Library for an Elevator struct, and for operations on an Elevator struct. " alt="" coords="91,155,170,181"/>
-<area shape="rect" id="node5" href="$utilities_8h.html" title="Useful functions. " alt="" coords="93,229,168,256"/>
-<area shape="rect" id="node7" href="$states_8h.html" title="Library containing the state enum. " alt="" coords="192,229,261,256"/>
-<area shape="rect" id="node6" href="$hardware_8h.html" title="Driver for the elevator hardware. " alt="" coords="87,304,174,331"/>
-</map>
