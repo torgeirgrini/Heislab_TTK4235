@@ -8,7 +8,7 @@
 #include "elevator.h"
 
 /**
- * @brief Sets all elements of queue_matrix in an Elevator struct to zero.
+ * @brief Sets all elements of order_matrix in an Elevator struct to zero.
  * 
  * @param[out] p_elev Pointer to an Elevator struct
  *
@@ -16,7 +16,7 @@
 void queue_clear(Elevator *p_elev);
 
 /**
- * @brief Checks a specified value in queue_matrix in an Elevator struct
+ * @brief Checks a specified value in order_matrix in an Elevator struct
  * 
  * @param[in] p_elev Pointer to an Elevator struct
  * @param[in] order_type The order type to check
@@ -27,14 +27,14 @@ void queue_clear(Elevator *p_elev);
 int queue_get_order(Elevator *p_elev, HardwareOrder order_type, int floor);
 
 /**
- * @brief Updates queue_matrix in an Elevator struct with new orders
+ * @brief Updates order_matrix in an Elevator struct with new orders
 
  * @param[out] p_elev Pointer to an Elevator struct 
  */
 void queue_set_orders(Elevator *p_elev);
 
 /**
- * @brief Sets the value in the queue_matrix in @p p_elev given by @p order_type and @p floor to zero
+ * @brief Sets the value in the order_matrix in @p p_elev given by @p order_type and @p floor to zero
  
  * @param[out] p_elev Pointer to an Elevator struct
  * @param[in] order_type The order type specified
@@ -43,7 +43,7 @@ void queue_set_orders(Elevator *p_elev);
 void queue_delete_order(Elevator *p_elev, HardwareOrder order_type, int floor);
 
 /**
- * @brief Sets all values at @p floor in the queue_matrix in @p p_elev to zero
+ * @brief Sets all values at @p floor in the order_matrix in @p p_elev to zero
  * 
  * @param[out] p_elev Pointer to an Elevator struct
  * @param[in] floor The floor specified

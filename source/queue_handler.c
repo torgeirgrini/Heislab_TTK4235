@@ -3,27 +3,27 @@
 void queue_clear(Elevator *p_elev) {
     for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
         for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
-            p_elev->queue_matrix[i][j] = 0;
+            p_elev->order_matrix[i][j] = 0;
         }
     }
 }
 
 int queue_get_order(Elevator *p_elev, HardwareOrder order_type, int floor) {
-    return p_elev->queue_matrix[order_type][floor];
+    return p_elev->order_matrix[order_type][floor];
 }
 
 void queue_set_orders(Elevator *p_elev) {
     for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
         for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
             if(hardware_read_order(j, i)){
-                p_elev->queue_matrix[i][j] = 1;
+                p_elev->order_matrix[i][j] = 1;
             }
         }
     }
 }
 
 void queue_delete_order(Elevator *p_elev, HardwareOrder order_type, int floor) {
-    p_elev->queue_matrix[order_type][floor] = 0;
+    p_elev->order_matrix[order_type][floor] = 0;
 }
 
 void queue_delete_orders_at_floor(Elevator *p_elev, int floor){
@@ -72,7 +72,7 @@ HardwareMovement queue_get_movement_pri_direction(Elevator *p_elev) {
             end_floor_search = HARDWARE_NUMBER_OF_FLOORS;
             if(p_elev->current_floor == HARDWARE_NUMBER_OF_FLOORS-1) {return HARDWARE_MOVEMENT_DOWN;}
             for(int j = start_floor_search; j < end_floor_search; j++) {
-                if (p_elev->queue_matrix[HARDWARE_ORDER_UP][j] || p_elev->queue_matrix[HARDWARE_ORDER_INSIDE][j]) {return HARDWARE_MOVEMENT_UP;}
+                if (p_elev->order_matrix[HARDWARE_ORDER_UP][j] || p_elev->order_matrix[HARDWARE_ORDER_INSIDE][j]) {return HARDWARE_MOVEMENT_UP;}
             }
             break;
 
@@ -82,7 +82,7 @@ HardwareMovement queue_get_movement_pri_direction(Elevator *p_elev) {
             end_floor_search = 0;
             if(p_elev->current_floor == 0) {return HARDWARE_MOVEMENT_UP;}
             for(int j = start_floor_search; j == end_floor_search; j--) {
-                if (p_elev->queue_matrix[HARDWARE_ORDER_DOWN][j] || p_elev->queue_matrix[HARDWARE_ORDER_INSIDE][j]) {return HARDWARE_MOVEMENT_DOWN;}
+                if (p_elev->order_matrix[HARDWARE_ORDER_DOWN][j] || p_elev->order_matrix[HARDWARE_ORDER_INSIDE][j]) {return HARDWARE_MOVEMENT_DOWN;}
             }
             break;
         }

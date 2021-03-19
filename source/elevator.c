@@ -12,7 +12,7 @@ void elevator_init(Elevator *p_elev) {
 
     for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
         for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
-            p_elev->queue_matrix[i][j] = 0;
+            p_elev->order_matrix[i][j] = 0;
         }
     }
 }
@@ -32,7 +32,7 @@ void elevator_startup_routine(Elevator *p_elev) {
 void elevator_set_order_light(Elevator *p_elev) {
     for(int i = 0; i < ELEVATOR_NUMBER_OF_ORDERS; i++) {
         for(int j = 0; j < HARDWARE_NUMBER_OF_FLOORS; j++) {
-            hardware_command_order_light(j, i, p_elev->queue_matrix[i][j]);
+            hardware_command_order_light(j, i, p_elev->order_matrix[i][j]);
         }
     }
 }

@@ -14,7 +14,7 @@
 /**
  * @brief An Elevator struct which holds a queue system, memory variables and control variables
  * 
- * @param queue_matrix A matrix that holds a value for every type of order at every floor for the elevator. The values
+ * @param order_matrix A matrix that holds a value for every type of order at every floor for the elevator. The values
  * are non-zero for an active order and zero for a none-active order
  * @param current_floor Holds the value for the current or last visited floor
  * @param previous_floor Holds the value for the previously visited floor
@@ -27,7 +27,7 @@
  * 
 */
 typedef struct Elevator {
-    int queue_matrix[ELEVATOR_NUMBER_OF_ORDERS][HARDWARE_NUMBER_OF_FLOORS];
+    int order_matrix[ELEVATOR_NUMBER_OF_ORDERS][HARDWARE_NUMBER_OF_FLOORS];
 
     /* Memory variables */
     int current_floor;
@@ -45,7 +45,7 @@ typedef struct Elevator {
 
 
 /**
- * @brief Initialises the elements of @p p_elev and sets queue_matrix to a zero matrix. Sets current_state to INITIALIZE.
+ * @brief Initialises the elements of @p p_elev and sets order_matrix to a zero matrix. Sets current_state to INITIALIZE.
  * 
  * @param[out] p_elev Pointer to an Elevator struct
  */
