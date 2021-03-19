@@ -11,7 +11,7 @@
  */
 
 typedef enum state {
-    INIT, /**<State for initialization*/
+    INITIALIZE, /**<State for initialization*/
     IDLE_IN_FLOOR, /**<Elevator is idle in a floor*/
     IDLE_IN_SHAFT, /**<Elevator is idle in the shaft*/
     MOVEMENT, /**<Elevator is moving*/

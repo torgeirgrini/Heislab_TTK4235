@@ -45,7 +45,7 @@ typedef struct Elevator {
 
 
 /**
- * @brief Initialises the elements of @p p_elev and sets queue_matrix to a zero matrix. Sets current_state to INIT.
+ * @brief Initialises the elements of @p p_elev and sets queue_matrix to a zero matrix. Sets current_state to INITIALIZE.
  * 
  * @param[out] p_elev Pointer to an Elevator struct
  */
