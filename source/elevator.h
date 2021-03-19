@@ -73,5 +73,13 @@ void elevator_set_order_light(Elevator *p_elev);
  */
 void elevator_update_floor(Elevator *p_elev);
 
+/**
+ * @brief Detects if the stop button is pressed, and decides the behavior of the elevator if it is.
+ * If a floor sensor is activated the state of the elevator is to be set to STOP_BTN_FLOOR.
+ * Otherwise the state of the elevator is to be set to STOP_BTN_SHAFT.
+ * @param[in,out] p_elev Pointer to an Elevator struct 
+ */
+void elevator_emergency_detector(Elevator *p_elev);
+
 
 #endif

@@ -16,7 +16,7 @@
 void queue_clear(Elevator *p_elev);
 
 /**
- * @brief Check a specified value in queue_matrix in an Elevator struct
+ * @brief Checks a specified value in queue_matrix in an Elevator struct
  * 
  * @param[in] p_elev Pointer to an Elevator struct
  * @param[in] order_type The order type to check
@@ -34,7 +34,7 @@ int queue_get_order(Elevator *p_elev, HardwareOrder order_type, int floor);
 void queue_set_orders(Elevator *p_elev);
 
 /**
- * @brief Sets a value specified by @p order_type and @p floor in the queue_matrix in @p p_elev to zero
+ * @brief Sets the value in the queue_matrix in @p p_elev given by @p order_type and @p floor to zero
  
  * @param[out] p_elev Pointer to an Elevator struct
  * @param[in] order_type The order type specified
@@ -115,5 +115,14 @@ int queue_active_orders_in_direction(Elevator *p_elev, HardwareMovement directio
  * @return 1 if there are orders to handle next at current floor of @p p_elev , 0 otherwise 
  */
 int queue_check_orders_current_floor(Elevator* p_elev);
+
+/**
+ * @brief Workaround for issue with movement after the stop button is released when in shaft. 
+ * If there are no orders in the last direction and last direction is downwards, the current floor is decremented.
+ * If there are no orders in the last direction and last direction is upwards, the current floor is incremented.
+ * @param p_elev Pointer to an Elevator struct
+ */
+
+void queue_adjust_floor(Elevator *p_elev);
 
 #endif

@@ -4,6 +4,7 @@
 #include "elevator.h"
 #include "queue_handler.h"
 #include "timer.h"
+#include "queue_handler.h"
 
 
 int main(){
@@ -25,7 +26,7 @@ int main(){
         if(p_elevator->current_state != STOP_BTN_FLOOR && p_elevator->current_state != STOP_BTN_SHAFT) {
             queue_set_orders(p_elevator);
             elevator_set_order_light(p_elevator);
-            stop_btn_detector(p_elevator);  
+            elevator_emergency_detector(p_elevator);  
         }
 
         switch(p_elevator->current_state) {
@@ -43,7 +44,7 @@ int main(){
                 
             case IDLE_IN_SHAFT:
                 if(queue_active_orders_all_floors(p_elevator)) {
-                    stop_btn_adjust_floor(p_elevator);
+                    queue_adjust_floor(p_elevator);
                     p_elevator->current_movement = queue_get_movement_pri_direction(p_elevator);
                     p_elevator->current_state = MOVEMENT;
                 }
@@ -69,12 +70,9 @@ int main(){
 
             case TIMER:
                 queue_delete_orders_at_floor(p_elevator, p_elevator->current_floor);
-                if(!p_elevator->timer_set) {
+                if(!p_elevator->timer_set || hardware_read_obstruction_signal()) {
                     timer_previous = timer_set();
                     p_elevator->timer_set = 1;
-                }
-                if(hardware_read_obstruction_signal()) {
-                    timer_previous = timer_set();
                 }
                 if (timer_finished(timer_previous, 3000)) {
                     hardware_command_door_open(0);

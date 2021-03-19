@@ -1,8 +1,0 @@
-<map id="source/elevator.h" name="source/elevator.h">
-<area shape="rect" id="node2" href="$elevator_8c_source.html" title="source/elevator.c" alt="" coords="5,80,128,107"/>
-<area shape="rect" id="node3" href="$queue__handler_8h.html" title="Library for doing operations with a queue matrix defined in an Elevator struct. " alt="" coords="152,80,312,107"/>
-<area shape="rect" id="node4" href="$stop__btn_8h.html" title="Library for stop button operations. " alt="" coords="85,155,211,181"/>
-<area shape="rect" id="node7" href="$queue__handler_8c_source.html" title="source/queue_handler.c" alt="" coords="236,155,396,181"/>
-<area shape="rect" id="node5" href="$main_8c_source.html" title="source/main.c" alt="" coords="27,229,131,256"/>
-<area shape="rect" id="node6" href="$stop__btn_8c_source.html" title="source/stop_btn.c" alt="" coords="155,229,282,256"/>
-</map>

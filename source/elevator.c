@@ -45,3 +45,18 @@ void elevator_update_floor(Elevator *p_elev) {
         hardware_command_floor_indicator_on(p_elev->current_floor);
     }
 }
+
+void elevator_emergency_detector(Elevator *p_elev) {
+    if(hardware_read_stop_signal() && (read_all_floor_sensors() != -1)) {
+        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+        p_elev->current_state = STOP_BTN_FLOOR;
+    }
+    else if(hardware_read_stop_signal()) {
+        hardware_command_movement(HARDWARE_MOVEMENT_STOP);
+        if (p_elev->current_movement != HARDWARE_MOVEMENT_STOP) {
+            p_elev->previous_direction = p_elev->current_movement;
+        }
+        p_elev->current_movement = HARDWARE_MOVEMENT_STOP;
+        p_elev->current_state = STOP_BTN_SHAFT;
+    }
+}
