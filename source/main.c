@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <signal.h>
 #include "elevator.h"
+#include "queue_handler.h"
 #include "timer.h"
-#include "stop_btn.h"
 
 
 int main(){
